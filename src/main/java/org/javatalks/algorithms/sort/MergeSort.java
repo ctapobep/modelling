@@ -5,7 +5,14 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
-/** @author stanislav bashkirtsev */
+/**
+ * A log(n) sorting algorithm. Eats a lot of memory thus. It's more effective than insertion sort only when it comes to
+ * more or less big numbers.
+ *
+ * @author stanislav bashkirtsev
+ * @see <a href="http://en.wikipedia.org/wiki/Merge_sort">Wikipedia</a>
+ * @see <a href="http://www.youtube.com/watch?v=XaqR3G_NVoo">German Folk Dance</a>
+ */
 public class MergeSort extends InitialChecksSorter {
 
     @Override
