@@ -6,8 +6,13 @@ import java.util.List;
 
 /**
  * This algorithm first goes upwards and checks weather current element is smaller than previous one. If yes, then it
- * goes downwards and insert current element into the position where {@code previousElement =< currentElement =<
- * nexElement}. And then we move our marker next and check with previous element again.
+ * goes downwards and insert current element into the position where: {@code previousElement =< currentElement =<
+ * nextElement}. And then we move our marker next and check with previous element again. <p>The worst complexity of the
+ * algorithm is {@code O=n*n}. Here is what wiki says: The average case is also quadratic, which makes insertion sort
+ * impractical for sorting large arrays. However, insertion sort is one of the fastest algorithms for sorting very small
+ * arrays, even faster than quicksort; indeed, good quicksort implementations use insertion sort for arrays smaller than
+ * a certain threshold, also when arising as subproblems; the exact threshold must be determined experimentally and
+ * depends on the machine, but is commonly around ten.</p>
  *
  * @author stanislav bashkirtsev
  * @see <a href="http://en.wikipedia.org/wiki/Insertion_sort">Wikipedia</a>
