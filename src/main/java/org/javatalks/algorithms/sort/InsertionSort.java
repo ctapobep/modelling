@@ -26,6 +26,9 @@ public class InsertionSort implements Sorter {
             return new ArrayList<>();
         }
         List<E> result = new ArrayList<>(toSort);
+        if(result.size() == 1){
+            return result;
+        }
         return doSort(result);
     }
 

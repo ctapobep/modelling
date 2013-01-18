@@ -25,6 +25,12 @@ class SorterTest {
     }
 
     @Test
+    void "one element passed -> one element returned"() {
+        List<Integer> result = sut.sort([12])
+        assert result == [12]
+    }
+
+    @Test
     void "only positives"() {
         List<Integer> result = sut.sort([2, 1, 15])
         assert result == [1, 2, 15]
