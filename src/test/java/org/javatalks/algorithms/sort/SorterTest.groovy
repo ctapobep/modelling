@@ -1,11 +1,19 @@
 package org.javatalks.algorithms.sort
 
 import org.junit.Test
+import org.junit.runner.RunWith
+import org.junit.runners.Parameterized
 
 /**
  * @author stanislav bashkirtsev
  */
+@RunWith(Parameterized.class)
 class SorterTest {
+
+    SorterTest(Sorter sut) {
+        this.sut = sut
+    }
+
     @Test
     void "already sorted should return same order"() {
         List<Integer> result = sut.sort([-1, 0, 1, 2])
@@ -60,5 +68,11 @@ class SorterTest {
         assert result == []
     }
 
-    private Sorter sut = new InsertionSort()
+    @Parameterized.Parameters
+    public static Collection<Object[]> allSorters() {
+        List<Sorter> sorters = [new InsertionSort(), new MergeSort()]
+        return sorters.collect{it as Object[]}
+    }
+
+    private Sorter sut
 }

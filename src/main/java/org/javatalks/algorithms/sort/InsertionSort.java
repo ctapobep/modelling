@@ -1,6 +1,5 @@
 package org.javatalks.algorithms.sort;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -19,27 +18,9 @@ import java.util.List;
  * @see <a href="http://www.youtube.com/watch?v=Kg4bqzAqRBM&feature=player_detailpage#t=601s">MIT Lecture</a>
  * @see <a href="http://www.youtube.com/watch?v=ROalU379l3U">Romanian Folk Dance</a>
  */
-public class InsertionSort implements Sorter {
+public class InsertionSort extends InitialChecksSorter {
     @Override
-    public <E extends Comparable<? super E>> List<E> sort(List<E> toSort) {
-        if (toSort == null || toSort.isEmpty()) {
-            return new ArrayList<>();
-        }
-        List<E> result = new ArrayList<>(toSort);
-        if(result.size() == 1){
-            return result;
-        }
-        return doSort(result);
-    }
-
-    /**
-     * Sorts the incoming list. The specified list is modified.
-     *
-     * @param toSort a list to be sorted, should be already checked for nulls and emptiness
-     * @param <E>    sortable
-     * @return the same list as was passed, but already after sorting
-     */
-    private <E extends Comparable<? super E>> List<E> doSort(List<E> toSort) {
+    <E extends Comparable<? super E>> List<E> doSort(List<E> toSort) {
         for (int i = 1; i < toSort.size(); i++) {
             int comparison = toSort.get(i).compareTo(toSort.get(i - 1));
             if (comparison < 0) {
