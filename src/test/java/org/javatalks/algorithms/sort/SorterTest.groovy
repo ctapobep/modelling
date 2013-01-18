@@ -68,6 +68,20 @@ class SorterTest {
         assert result == []
     }
 
+    @Test
+    void "benchmark"() {
+        int benchMarkSize = 30_000
+        Random random = new Random()
+        List<Long> input = new ArrayList<>(benchMarkSize)
+        for (int i = 0; i < benchMarkSize; i++) {
+            input.add(random.nextInt())
+        }
+        long start = System.currentTimeMillis()
+        List<Long> sorted = sut.sort(input)
+        long tookTime = System.currentTimeMillis() - start
+        println sut.class.simpleName + " on " + sorted.size() + " of elements took: " + tookTime
+    }
+
     @Parameterized.Parameters
     public static Collection<Object[]> allSorters() {
         List<Sorter> sorters = [new InsertionSort(), new MergeSort()]
