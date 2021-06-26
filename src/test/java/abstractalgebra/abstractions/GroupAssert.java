@@ -11,9 +11,15 @@ public class GroupAssert<T, OP extends GroupOp<T>> {
         this.op = op;
     }
 
+    /**
+     * aka Commutative Group
+     */
+    public void assertIsAbelianGroup() {
+        assertIsGroup();
+        assertCommutative();
+    }
     public void assertIsGroup() {
         assertIdentityExists();
-        assertCommutative();
         assertAssociative();
         assertHasInverse();
     }

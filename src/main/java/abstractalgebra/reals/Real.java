@@ -1,7 +1,6 @@
 package abstractalgebra.reals;
 
 import java.math.BigDecimal;
-import java.util.Objects;
 
 public class Real {
     public static final Real ZERO = new Real(BigDecimal.ZERO), ONE = new Real(BigDecimal.ONE);

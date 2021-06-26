@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 import static io.qala.datagen.RandomShortApi.Double;
 
 public class RealGenerator implements ValueGenerator<Real> {
-    @Override public Real generate() {
+    public Real generate() {
         return new Real(BigDecimal.valueOf(Double(-1000, 1000)));
     }
 }
