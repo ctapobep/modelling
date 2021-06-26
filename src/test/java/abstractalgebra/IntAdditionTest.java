@@ -1,10 +1,10 @@
 package abstractalgebra;
 
-import abstractalgebra.abstractions.GroupTester;
+import abstractalgebra.abstractions.GroupAssert;
 import org.junit.Test;
 
 public class IntAdditionTest {
     @Test public void isGroup() {
-        new GroupTester<>(new IntAddition(), new IntGenerator()).assertIsGroup();
+        new GroupAssert<>(new IntAddition(), new IntGenerator()).assertIsGroup();
     }
 }

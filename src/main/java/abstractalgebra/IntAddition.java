@@ -1,13 +1,16 @@
 package abstractalgebra;
 
-import abstractalgebra.abstractions.Op;
+import abstractalgebra.abstractions.RingOp;
 
-public class IntAddition implements Op<Int> {
+public class IntAddition implements RingOp<Int> {
 
-    @Override public Int calc(Int o1, Int o2) {
+    public Int calc(Int o1, Int o2) {
         return new Int(o1.val() + o2.val());
     }
-    @Override public Int identity() {
+    public Int identity() {
         return Int.ZERO;
+    }
+    public Int inverse(Int a) {
+        return new Int(-a.val());
     }
 }

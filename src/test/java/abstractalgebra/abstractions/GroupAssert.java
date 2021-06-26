@@ -1,15 +1,12 @@
 package abstractalgebra.abstractions;
 
-import abstractalgebra.abstractions.Op;
-import abstractalgebra.abstractions.ValueGenerator;
-
 import static org.junit.Assert.assertEquals;
 
-public class GroupTester<T, OP extends Op<T>> {
+public class GroupAssert<T, OP extends GroupOp<T>> {
     private final ValueGenerator<T> generator;
     private final OP op;
 
-    public GroupTester(OP op, ValueGenerator<T> generator) {
+    public GroupAssert(OP op, ValueGenerator<T> generator) {
         this.generator = generator;
         this.op = op;
     }
@@ -18,6 +15,12 @@ public class GroupTester<T, OP extends Op<T>> {
         assertIdentityExists();
         assertCommutative();
         assertAssociative();
+        assertHasInverse();
+    }
+
+    private void assertHasInverse() {
+        T a = generator.generate();
+        assertEquals(op.identity(), op.calc(a, op.inverse(a)));
     }
 
     private void assertAssociative() {
