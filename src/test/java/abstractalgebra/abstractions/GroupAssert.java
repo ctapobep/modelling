@@ -21,13 +21,9 @@ public class GroupAssert<T, OP extends GroupOp<T>> {
     public void assertIsGroup() {
         // monoids are associative and have identity element
         new MonoidAssert<>(op, generator).assertIsMonoid();
-        assertHasInverse();
+        new InvertibilityAssert<>(op, generator).assertHasInverse();
     }
 
-    private void assertHasInverse() {
-        T a = generator.generate();
-        assertEquals(op.identity(), op.calc(a, op.inverse(a)));
-    }
     private void assertCommutative() {
         T a = generator.generate();
         T b = generator.generate();

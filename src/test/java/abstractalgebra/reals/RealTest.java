@@ -14,4 +14,7 @@ public class RealTest {
     @Test public void formsRingUnderAdditionAndMultiplication() {
         new RingAssert<>(new RealAddition(), new RealMultiplication(), new RealGenerator()).assertIsRing();
     }
+    @Test public void formsFieldUnderAdditionAndMultiplication() {
+        new RingAssert<>(new RealAddition(), new RealMultiplication(), new RealGenerator()).assertIsRing();
+    }
 }
