@@ -15,15 +15,24 @@ public class RingAssert<T, ADDITION extends GroupOp<T>, MULTIPLICATION extends G
     public void assertIsRing() {
         additionIsAbelianGroup();
         multiplicationIsMonoid();
-        multiplicationIsDistributive();
+        multiplicationIsLeftDistributive();
+        multiplicationIsRightDistributive();
     }
-    private void multiplicationIsDistributive() {
+    private void multiplicationIsLeftDistributive() {
         T a = generator.generate(),
           b = generator.generate(),
           c = generator.generate();
         assertEquals(
                 multiplication.calc(a, addition.calc(b, c)),
                 addition.calc(multiplication.calc(a, b),  multiplication.calc(a, c)));
+    }
+    private void multiplicationIsRightDistributive() {
+        T a = generator.generate(),
+                b = generator.generate(),
+                c = generator.generate();
+        assertEquals(
+                multiplication.calc(addition.calc(b, c), a),
+                addition.calc(multiplication.calc(b, a),  multiplication.calc(c, a)));
     }
     private void multiplicationIsMonoid() {
         new MonoidAssert<>(multiplication, generator).assertIsMonoid();
