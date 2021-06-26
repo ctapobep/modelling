@@ -1,4 +1,4 @@
-package abstractalgebra;
+package abstractalgebra.ints;
 
 import abstractalgebra.abstractions.GroupAssert;
 import org.junit.Test;

@@ -1,4 +1,4 @@
-package abstractalgebra;
+package abstractalgebra.ints;
 
 import java.util.Objects;
 
