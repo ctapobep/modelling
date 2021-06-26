@@ -1,14 +1,34 @@
 package abstractalgebra.abstractions;
 
-public class RingAssert<T, OP extends RingOp<T>> {
-    private final ValueGenerator<T> generator;
-    private final OP op;
+import static org.junit.Assert.assertEquals;
 
-    public RingAssert(ValueGenerator<T> generator, OP op) {
+public class RingAssert<T, ADDITION extends GroupOp<T>, MULTIPLICATION extends GroupOp<T>> {
+    private final ValueGenerator<T> generator;
+    private final ADDITION addition;
+    private final MULTIPLICATION multiplication;
+
+    public RingAssert(ADDITION addition, MULTIPLICATION multiplication, ValueGenerator<T> generator) {
         this.generator = generator;
-        this.op = op;
+        this.addition = addition;
+        this.multiplication = multiplication;
     }
     public void assertIsRing() {
-//        new GroupAssert<ValueGenerator<T>, T>(generator, op).assertIsGroup();
+        additionIsAbelianGroup();
+        multiplicationIsMonoid();
+        multiplicationIsDistributive();
+    }
+    private void multiplicationIsDistributive() {
+        T a = generator.generate(),
+          b = generator.generate(),
+          c = generator.generate();
+        assertEquals(
+                multiplication.calc(a, addition.calc(b, c)),
+                addition.calc(multiplication.calc(a, b),  multiplication.calc(a, c)));
+    }
+    private void multiplicationIsMonoid() {
+        new MonoidAssert<>(multiplication, generator).assertIsMonoid();
+    }
+    private void additionIsAbelianGroup() {
+        new GroupAssert<>(addition, generator).assertIsAbelianGroup();
     }
 }

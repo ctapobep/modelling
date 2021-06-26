@@ -1,6 +1,7 @@
 package abstractalgebra.reals;
 
 import abstractalgebra.abstractions.GroupAssert;
+import abstractalgebra.abstractions.RingAssert;
 import org.junit.Test;
 
 public class RealTest {
@@ -9,5 +10,8 @@ public class RealTest {
     }
     @Test public void formsAbelianGroupUnderMultiplication() {
         new GroupAssert<>(new RealMultiplication(), new RealGenerator()).assertIsAbelianGroup();
+    }
+    @Test public void formsRingUnderAdditionAndMultiplication() {
+        new RingAssert<>(new RealAddition(), new RealMultiplication(), new RealGenerator()).assertIsRing();
     }
 }
