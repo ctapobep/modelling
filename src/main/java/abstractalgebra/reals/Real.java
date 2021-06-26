@@ -13,16 +13,14 @@ public class Real {
     public BigDecimal val() {
         return v;
     }
-    @Override public boolean equals(Object o) {
+
+    public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Real another = (Real) o;
-        return v.compareTo(another.v) == 0;
+        return Math.abs(v.doubleValue() - another.v.doubleValue()) < 1e-20;
     }
-    @Override public int hashCode() {
-        return Objects.hash(v);
-    }
-    @Override public String toString() {
+    public String toString() {
         return v.toString();
     }
 }
