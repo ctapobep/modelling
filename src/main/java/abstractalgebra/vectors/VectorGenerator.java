@@ -1,7 +1,6 @@
 package abstractalgebra.vectors;
 
 import abstractalgebra.abstractions.ValueGenerator;
-import abstractalgebra.ints.IntGenerator;
 import abstractalgebra.reals.Real;
 import abstractalgebra.reals.RealGenerator;
 
@@ -16,5 +15,8 @@ public class VectorGenerator implements ValueGenerator<Vector> {
         for (int i = 0; i < reals.length; i++)
             reals[i] = realGenerator.generate();
         return new Vector(reals);
+    }
+    public int getDims() {
+        return dims;
     }
 }

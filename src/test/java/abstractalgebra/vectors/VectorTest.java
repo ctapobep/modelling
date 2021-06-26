@@ -5,6 +5,7 @@ import org.junit.Test;
 
 public class VectorTest {
     @Test public void formsGroupUnderAddition() {
-        new GroupAssert<>(new VectorAddition(), new VectorGenerator());
+        VectorGenerator generator = new VectorGenerator();
+        new GroupAssert<>(new VectorAddition(generator.getDims()), generator).assertIsAbelianGroup();
     }
 }
