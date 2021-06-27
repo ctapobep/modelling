@@ -2,7 +2,7 @@ package abstractalgebra.abstractions;
 
 import static org.junit.Assert.assertEquals;
 
-public class MonoidAssert<T, OP extends GroupOp<T>> {
+public class MonoidAssert<T, OP extends MonotypicalGroupOp<T>> {
     private final ValueGenerator<T> generator;
     private final OP op;
 

@@ -2,7 +2,7 @@ package abstractalgebra.abstractions;
 
 import static org.junit.Assert.assertEquals;
 
-public class RingAssert<T, ADDITION extends GroupOp<T>, MULTIPLICATION extends GroupOp<T>> {
+public class RingAssert<T, ADDITION extends MonotypicalGroupOp<T>, MULTIPLICATION extends MonotypicalGroupOp<T>> {
     private final ValueGenerator<T> generator;
     private final ADDITION addition;
     private final MULTIPLICATION multiplication;

@@ -1,8 +1,8 @@
 package abstractalgebra.ints;
 
-import abstractalgebra.abstractions.RingOp;
+import abstractalgebra.abstractions.RingOpMonotypical;
 
-public class IntAddition implements RingOp<Int> {
+public class IntAddition implements RingOpMonotypical<Int> {
 
     public Int calc(Int o1, Int o2) {
         return new Int(o1.val() + o2.val());
