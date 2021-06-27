@@ -4,10 +4,10 @@ import abstractalgebra.abstractions.FieldElement;
 
 import java.util.Arrays;
 
-public class Column<T> {
+public class FieldColumn<T> {
     private final FieldElement<T>[] elements;
 
-    public Column(FieldElement<T>[] elements) {
+    public FieldColumn(FieldElement<T>[] elements) {
         this.elements = elements;
     }
 
@@ -22,7 +22,7 @@ public class Column<T> {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Column<?> column = (Column<?>) o;
+        FieldColumn<?> column = (FieldColumn<?>) o;
         return Arrays.equals(elements, column.elements);
     }
     public String toString() {

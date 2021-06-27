@@ -7,7 +7,7 @@ import abstractalgebra.abstractions.MonotypicalGroupOp;
 import java.util.Arrays;
 
 @SuppressWarnings("unchecked")
-public class ColumnAddition<T> implements MonotypicalGroupOp<Column<T>> {
+public class ColumnAddition<T> implements MonotypicalGroupOp<FieldColumn<T>> {
     private final Field<T> field;
     private final int dims;
 
@@ -15,23 +15,23 @@ public class ColumnAddition<T> implements MonotypicalGroupOp<Column<T>> {
         this.field = field;
         this.dims = dims;
     }
-    public Column<T> calc(Column<T> o1, Column<T> o2) {
+    public FieldColumn<T> calc(FieldColumn<T> o1, FieldColumn<T> o2) {
         if(o1.dims() != o2.dims())
             throw new IllegalArgumentException();
         FieldElement<T>[] result = new FieldElement[o2.dims()];
         for (int i = 0; i < result.length; i++)
             result[i] = o1.get(i).add(o2.get(i));
-        return new Column<>(result);
+        return new FieldColumn<>(result);
     }
-    public Column<T> identity() {
+    public FieldColumn<T> identity() {
         FieldElement<T>[] r = new FieldElement[dims];
         Arrays.fill(r, field.additiveIdentity());
-        return new Column<>(r);
+        return new FieldColumn<>(r);
     }
-    public Column<T> inverse(Column<T> a) {
+    public FieldColumn<T> inverse(FieldColumn<T> a) {
         FieldElement<T>[] result = new FieldElement[a.dims()];
         for (int i = 0; i < result.length; i++)
             result[i] = field.create(field.toRing().toAdditiveGroup().getOp().inverse(a.get(i).val()));
-        return new Column<>(result);
+        return new FieldColumn<>(result);
     }
 }

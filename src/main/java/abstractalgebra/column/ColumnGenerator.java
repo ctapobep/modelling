@@ -6,7 +6,7 @@ import abstractalgebra.abstractions.ValueGenerator;
 
 import static io.qala.datagen.RandomShortApi.integer;
 
-public class ColumnGenerator<T> implements ValueGenerator<Column<T>> {
+public class ColumnGenerator<T> implements ValueGenerator<FieldColumn<T>> {
     private final int dims = integer(0, 50);
     private final Field<T> field;
     private final ValueGenerator<T> fieldGenerator;
@@ -16,13 +16,13 @@ public class ColumnGenerator<T> implements ValueGenerator<Column<T>> {
         this.fieldGenerator = fieldGenerator;
     }
 
-    @Override public Column<T> generate() {
+    @Override public FieldColumn<T> generate() {
         FieldElement<T>[] reals = new FieldElement[dims];
         for (int i = 0; i < reals.length; i++)
             reals[i] = field.create(fieldGenerator.generate());
-        return new Column<>(reals);
+        return new FieldColumn<>(reals);
     }
-    public int getDims() {
+    public int dims() {
         return dims;
     }
 }

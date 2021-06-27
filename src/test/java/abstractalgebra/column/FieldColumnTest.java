@@ -1,9 +1,6 @@
 package abstractalgebra.column;
 
-import abstractalgebra.abstractions.Field;
-import abstractalgebra.abstractions.FieldElement;
-import abstractalgebra.abstractions.Group;
-import abstractalgebra.abstractions.GroupAssert;
+import abstractalgebra.abstractions.*;
 import abstractalgebra.reals.Real;
 import abstractalgebra.reals.RealField;
 import abstractalgebra.reals.RealGenerator;
@@ -11,25 +8,37 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class ColumnTest {
+public class FieldColumnTest {
     @Test public void formsGroupUnderAddition() {
         Field<Real> realField = RealField.create();
         RealGenerator realGenerator = new RealGenerator();
         ColumnGenerator<Real> generator = new ColumnGenerator<>(realField, realGenerator);
-        Group<Column<Real>> columnGroup = new Group<>(new ColumnAddition<>(realField, generator.getDims()));
-        new GroupAssert<>(columnGroup, generator).assertIsAbelianGroup();
+
+        MonotypicalGroupOp<FieldColumn<Real>> vectorAddition = new ColumnAddition<>(realField, generator.dims());
+        ColumnScalarMultiplication<Real> vectorScalarMultiplication = new ColumnScalarMultiplication<>(realField, generator.dims());
+        VectorSpace<Real, FieldColumn<Real>> vectorSpace = new VectorSpace<>(
+                vectorAddition,
+                vectorScalarMultiplication
+        );
+
+        new GroupAssert<>(vectorSpace.toVectorAdditiveGroup(), generator).assertIsAbelianGroup();
     }
     @Test public void scalarMultiplicationIsCompatibleWithFieldMultiplication() {
         Field<Real> realField = RealField.create();
         RealGenerator realGenerator = new RealGenerator();
         FieldElement<Real> s1 = realField.create(realGenerator.generate()),
-                          s2 = realField.create(realGenerator.generate());
-        Column<Real> v = new ColumnGenerator<>(realField, realGenerator).generate();
+                           s2 = realField.create(realGenerator.generate());
+        FieldColumn<Real> c = new ColumnGenerator<>(realField, realGenerator).generate();
 
-        ColumnScalarMultiplication<Real> scalarMultiplication = new ColumnScalarMultiplication<>(realField, v.dims());
-        assertEquals(
-                scalarMultiplication.calcLeft(s1.multiply(s2), v),
-                scalarMultiplication.calcLeft(s2, scalarMultiplication.calcLeft(s1, v)));
+        MonotypicalGroupOp<FieldColumn<Real>> vectorAddition = new ColumnAddition<>(realField, c.dims());
+        ColumnScalarMultiplication<Real> vectorScalarMultiplication = new ColumnScalarMultiplication<>(realField, c.dims());
+        VectorSpace<Real, FieldColumn<Real>> vectorSpace = new VectorSpace<>(
+                vectorAddition,
+                vectorScalarMultiplication
+        );
+        VectorElement<Real, FieldColumn<Real>> v = vectorSpace.create(c);
+
+        assertEquals(v.multiply(s1.multiply(s2)), v.multiply(s2).multiply(s1));
     }
 //    @Test public void scalarMultiplicationIsDistributiveWithRespectToVectorAddition() {
 //        ColumnGenerator columnGenerator = new ColumnGenerator(field, fieldGenerator);

@@ -6,7 +6,7 @@ import abstractalgebra.abstractions.FieldElement;
 
 import java.util.Arrays;
 
-public class ColumnScalarMultiplication<T> implements BitypicalGroupOp<FieldElement<T>, Column<T>> {
+public class ColumnScalarMultiplication<T> implements BitypicalGroupOp<FieldElement<T>, FieldColumn<T>> {
     private final Field<T> field;
     private final int dims;
 
@@ -15,40 +15,42 @@ public class ColumnScalarMultiplication<T> implements BitypicalGroupOp<FieldElem
         this.dims = dims;
     }
 
-    public Column<T> calcLeft(FieldElement<T> o1, Column<T> o2) {
-        FieldElement<T>[] result = createEmptyArray(o2.dims());
-        for (int i = 0; i < o2.dims(); i++)
-            result[i] = o1.multiply(o2.get(i));
-        return new Column<>(result);
-    }
 
-    public Column<T> identity() {
+    public FieldColumn<T> identity() {
         FieldElement<T>[] r = createEmptyArray(dims);
         Arrays.fill(r, field.multiplicativeIdentity());
-        return new Column<>(r);
+        return new FieldColumn<>(r);
     }
-    public Column<T> inverse(Column<T> a) {
+    public FieldColumn<T> inverse(FieldColumn<T> a) {
         FieldElement<T>[] r = createEmptyArray(dims);
         for (int i = 0; i < r.length; i++)
             r[i] = field.multiplicativeInverse(a.get(i));
-        return new Column<>(r);
+        return new FieldColumn<>(r);
     }
-    public Column<T> calc(FieldElement<T> scalar, Column<T> v) {
-        return calcLeft(scalar, v);
+
+    public FieldColumn<T> calcLeft(FieldElement<T> o1, FieldColumn<T> o2) {
+        return calc(o1, o2);
     }
-    @Override public Column<T> calcRight(Column<T> o2, FieldElement<T> o1) {
-        return null;
+    public FieldColumn<T> calcRight(FieldColumn<T> o2, FieldElement<T> o1) {
+        return calc(o1, o2);
     }
+    private FieldColumn<T> calc(FieldElement<T> o1, FieldColumn<T> o2) {
+        FieldElement<T>[] result = createEmptyArray(o2.dims());
+        for (int i = 0; i < o2.dims(); i++)
+            result[i] = o1.multiply(o2.get(i));
+        return new FieldColumn<>(result);
+    }
+
     @Override public FieldElement<T> identity1() {
         return null;
     }
     @Override public FieldElement<T> inverse1(FieldElement<T> a) {
         return null;
     }
-    @Override public Column<T> identity2() {
+    @Override public FieldColumn<T> identity2() {
         return null;
     }
-    @Override public Column<T> inverse2(Column<T> a) {
+    @Override public FieldColumn<T> inverse2(FieldColumn<T> a) {
         return null;
     }
     @SuppressWarnings("unchecked")
