@@ -4,7 +4,7 @@ import abstractalgebra.abstractions.FieldMember;
 
 import java.util.Arrays;
 
-public class Column<T, E extends FieldMember<T>> {
+public class Column<T> {
     private final FieldMember<T>[] elements;
 
     public Column(FieldMember<T>[] elements) {
@@ -22,7 +22,7 @@ public class Column<T, E extends FieldMember<T>> {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Column<?, ?> column = (Column<?, ?>) o;
+        Column<?> column = (Column<?>) o;
         return Arrays.equals(elements, column.elements);
     }
     public String toString() {

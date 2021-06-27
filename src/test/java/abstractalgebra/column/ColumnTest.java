@@ -1,20 +1,19 @@
 package abstractalgebra.column;
 
 import abstractalgebra.abstractions.Field;
-import abstractalgebra.abstractions.FieldMember;
 import abstractalgebra.abstractions.Group;
 import abstractalgebra.abstractions.GroupAssert2;
-import abstractalgebra.reals.*;
+import abstractalgebra.reals.Real;
+import abstractalgebra.reals.RealField;
+import abstractalgebra.reals.RealGenerator;
 import org.junit.Test;
-
-import static org.junit.Assert.assertEquals;
 
 public class ColumnTest {
     @Test public void formsGroupUnderAddition() {
         Field<Real> realField = RealField.create();
         RealGenerator realGenerator = new RealGenerator();
         ColumnGenerator<Real> generator = new ColumnGenerator<>(realField, realGenerator);
-        Group<Column<Real, FieldMember<Real>>> columnGroup = new Group<>(new ColumnAddition<>(realField, generator.getDims()));
+        Group<Column<Real>> columnGroup = new Group<>(new ColumnAddition<>(realField, generator.getDims()));
         new GroupAssert2<>(columnGroup, generator).assertIsAbelianGroup();
     }
 //    @Test public void scalarIdentityExists() {
