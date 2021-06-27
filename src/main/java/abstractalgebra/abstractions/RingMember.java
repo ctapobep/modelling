@@ -19,11 +19,11 @@ public class RingMember<T> {
     public RingMember<T> multiply(RingMember<T> o2) {
         return new RingMember<>(multiply.calc(value, o2.value), add, multiply);
     }
-    public GroupMember<T> toAdditiveGroup() {
-        return new GroupMember<>(value, add);
+    public GroupElement<T> toAdditiveGroup() {
+        return new GroupElement<>(value, add);
     }
-    public MonoidMember<T> toMultiplicativeMonoid() {
-        return new MonoidMember<>(value, multiply);
+    public MonoidElement<T> toMultiplicativeMonoid() {
+        return new MonoidElement<>(value, multiply);
     }
 
     public boolean equals(Object o) {

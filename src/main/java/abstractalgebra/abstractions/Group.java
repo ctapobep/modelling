@@ -7,8 +7,8 @@ public class Group<T> implements MagmaElement<T> {
         this.add = add;
     }
 
-    public GroupMember<T> create(T t) {
-        return new GroupMember<>(t, add);
+    public GroupElement<T> create(T t) {
+        return new GroupElement<>(t, add);
     }
     public Monoid<T> toMonoid() {
         return new Monoid<>(add);

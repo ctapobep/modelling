@@ -9,8 +9,8 @@ public class Field<T> {
         this.multiply = multiply;
     }
 
-    public FieldMember<T> create(T t) {
-        return new FieldMember<>(t, add, multiply);
+    public FieldElement<T> create(T t) {
+        return new FieldElement<>(t, add, multiply);
     }
     public Ring<T> toRing() {
         return new Ring<>(add, multiply);
@@ -21,10 +21,18 @@ public class Field<T> {
     public MonotypicalGroupOp<T> getMultiplication() {
         return multiply;
     }
-    public FieldMember<T> multiplicativeIdentity() {
-        return new FieldMember<>(multiply.identity(), add, multiply);
+
+    public FieldElement<T> multiplicativeInverse(FieldElement<T> t) {
+        return create(multiply.inverse(t.val()));
     }
-    public FieldMember<T> additiveIdentity() {
-        return new FieldMember<>(add.identity(), add, multiply);
+    public FieldElement<T> additiveInverse(FieldElement<T> t) {
+        return create(add.inverse(t.val()));
+    }
+
+    public FieldElement<T> multiplicativeIdentity() {
+        return create(multiply.identity());
+    }
+    public FieldElement<T> additiveIdentity() {
+        return create(add.identity());
     }
 }

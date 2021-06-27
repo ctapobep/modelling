@@ -1,16 +1,16 @@
 package abstractalgebra.functions;
 
 import abstractalgebra.abstractions.Field;
-import abstractalgebra.abstractions.FieldMember;
+import abstractalgebra.abstractions.FieldElement;
 
-public class ZeroFunction<T> implements Function<T, FieldMember<T>>{
+public class ZeroFunction<T> implements Function<T, FieldElement<T>>{
     private final Field<T> field;
 
     public ZeroFunction(Field<T> field) {
         this.field = field;
     }
 
-    public FieldMember<T> get(FieldMember<T> realFieldMember) {
+    public FieldElement<T> get(FieldElement<T> realFieldElement) {
         return field.multiplicativeIdentity();
     }
 }

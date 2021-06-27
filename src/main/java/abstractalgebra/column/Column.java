@@ -1,17 +1,17 @@
 package abstractalgebra.column;
 
-import abstractalgebra.abstractions.FieldMember;
+import abstractalgebra.abstractions.FieldElement;
 
 import java.util.Arrays;
 
 public class Column<T> {
-    private final FieldMember<T>[] elements;
+    private final FieldElement<T>[] elements;
 
-    public Column(FieldMember<T>[] elements) {
+    public Column(FieldElement<T>[] elements) {
         this.elements = elements;
     }
 
-    public FieldMember<T> get(int i) {
+    public FieldElement<T> get(int i) {
         return elements[i];
     }
 

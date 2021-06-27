@@ -25,8 +25,8 @@ public class GroupAssert2<T, OP extends MonotypicalGroupOp<T>> {
     }
 
     private void assertCommutative() {
-        GroupMember<T> a = group.create(generator.generate());
-        GroupMember<T> b = group.create(generator.generate());
+        GroupElement<T> a = group.create(generator.generate());
+        GroupElement<T> b = group.create(generator.generate());
         assertEquals(a.add(b), b.add(a));
     }
 }

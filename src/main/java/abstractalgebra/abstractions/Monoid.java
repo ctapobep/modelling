@@ -7,10 +7,10 @@ public class Monoid<T> {
         this.add = add;
     }
 
-    public MonoidMember<T> create(T t) {
-        return new MonoidMember<>(t, add);
+    public MonoidElement<T> create(T t) {
+        return new MonoidElement<>(t, add);
     }
-    public MonoidMember<T> identity() {
-        return new MonoidMember<>(add.identity(), add);
+    public MonoidElement<T> identity() {
+        return new MonoidElement<>(add.identity(), add);
     }
 }

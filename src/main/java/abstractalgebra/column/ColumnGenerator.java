@@ -1,7 +1,7 @@
 package abstractalgebra.column;
 
 import abstractalgebra.abstractions.Field;
-import abstractalgebra.abstractions.FieldMember;
+import abstractalgebra.abstractions.FieldElement;
 import abstractalgebra.abstractions.ValueGenerator;
 
 import static io.qala.datagen.RandomShortApi.integer;
@@ -17,7 +17,7 @@ public class ColumnGenerator<T> implements ValueGenerator<Column<T>> {
     }
 
     @Override public Column<T> generate() {
-        FieldMember<T>[] reals = new FieldMember[dims];
+        FieldElement<T>[] reals = new FieldElement[dims];
         for (int i = 0; i < reals.length; i++)
             reals[i] = field.create(fieldGenerator.generate());
         return new Column<>(reals);

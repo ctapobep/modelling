@@ -21,8 +21,8 @@ public class RealTest {
     @Test public void test() {
         Field<Real> field = new Field<>(new RealAddition(), new RealMultiplication());
         RealGenerator reals = new RealGenerator();
-        FieldMember<Real> real1 = field.create(reals.generate());
-        FieldMember<Real> real2 = field.create(reals.generate());
+        FieldElement<Real> real1 = field.create(reals.generate());
+        FieldElement<Real> real2 = field.create(reals.generate());
         assertEquals(real2.add(real1), real1.add(real2));
     }
 
