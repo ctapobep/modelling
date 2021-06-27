@@ -4,11 +4,11 @@ import static org.junit.Assert.assertEquals;
 
 public class MonoidAssert<T, OP extends MonotypicalGroupOp<T>> {
     private final ValueGenerator<T> generator;
-    private final OP op;
+    private final Monoid<T> structure;
 
-    public MonoidAssert(OP op, ValueGenerator<T> generator) {
+    public MonoidAssert(Monoid<T> structure, ValueGenerator<T> generator) {
         this.generator = generator;
-        this.op = op;
+        this.structure = structure;
     }
 
     public void assertIsMonoid() {
@@ -17,15 +17,15 @@ public class MonoidAssert<T, OP extends MonotypicalGroupOp<T>> {
     }
 
     private void assertAssociative() {
-        T a = generator.generate();
-        T b = generator.generate();
-        T c = generator.generate();
-        assertEquals(op.calc(op.calc(a, b), c), op.calc(a, op.calc(b, c)));
+        MonoidElement<T> a = structure.create(generator.generate());
+        MonoidElement<T> b = structure.create(generator.generate());
+        MonoidElement<T> c = structure.create(generator.generate());
+        assertEquals(a.add(b.add(c)), a.add(b).add(c));
     }
     private void assertIdentityExists() {
-        T i = op.identity();
-        T a = generator.generate();
-        T result = op.calc(i, a);
+        MonoidElement<T> i = structure.identity();
+        MonoidElement<T> a = structure.create(generator.generate());
+        MonoidElement<T> result = i.add(a);
         assertEquals(a, result);
     }
 }

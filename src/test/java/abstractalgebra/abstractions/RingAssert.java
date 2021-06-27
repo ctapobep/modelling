@@ -33,9 +33,9 @@ public class RingAssert<T> {
                 b.multiply(a).add(c.multiply(a)));
     }
     private void multiplicationIsMonoid() {
-        new MonoidAssert2<>(ring.toMultiplicativeMonoid(), generator).assertIsMonoid();
+        new MonoidAssert<>(ring.toMultiplicativeMonoid(), generator).assertIsMonoid();
     }
     private void additionIsAbelianGroup() {
-        new GroupAssert2<>(ring.toAdditiveGroup(), generator).assertIsAbelianGroup();
+        new GroupAssert<>(ring.toAdditiveGroup(), generator).assertIsAbelianGroup();
     }
 }

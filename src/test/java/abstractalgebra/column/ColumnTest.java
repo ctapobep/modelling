@@ -3,7 +3,7 @@ package abstractalgebra.column;
 import abstractalgebra.abstractions.Field;
 import abstractalgebra.abstractions.FieldElement;
 import abstractalgebra.abstractions.Group;
-import abstractalgebra.abstractions.GroupAssert2;
+import abstractalgebra.abstractions.GroupAssert;
 import abstractalgebra.reals.Real;
 import abstractalgebra.reals.RealField;
 import abstractalgebra.reals.RealGenerator;
@@ -17,7 +17,7 @@ public class ColumnTest {
         RealGenerator realGenerator = new RealGenerator();
         ColumnGenerator<Real> generator = new ColumnGenerator<>(realField, realGenerator);
         Group<Column<Real>> columnGroup = new Group<>(new ColumnAddition<>(realField, generator.getDims()));
-        new GroupAssert2<>(columnGroup, generator).assertIsAbelianGroup();
+        new GroupAssert<>(columnGroup, generator).assertIsAbelianGroup();
     }
     @Test public void scalarMultiplicationIsCompatibleWithFieldMultiplication() {
         Field<Real> realField = RealField.create();
