@@ -1,14 +1,14 @@
-package abstractalgebra.vectors;
+package abstractalgebra.column;
 
 import abstractalgebra.reals.Real;
 
 import java.util.Arrays;
 
-public class Vector {
-    public static final Vector ZERO = new Vector(new Real[]{});
+public class VectorMember {
+    public static final VectorMember ZERO = new VectorMember(new Real[]{});
     private final Real[] v;
 
-    public Vector(Real[] v) {
+    public VectorMember(Real[] v) {
         this.v = v;
     }
 
@@ -21,7 +21,7 @@ public class Vector {
     @Override public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Vector vector = (Vector) o;
+        VectorMember vector = (VectorMember) o;
         return Arrays.equals(v, vector.v);
     }
     @Override public String toString() {

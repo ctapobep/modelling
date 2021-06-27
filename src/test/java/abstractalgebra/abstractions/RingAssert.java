@@ -2,15 +2,13 @@ package abstractalgebra.abstractions;
 
 import static org.junit.Assert.assertEquals;
 
-public class RingAssert<T, ADDITION extends MonotypicalGroupOp<T>, MULTIPLICATION extends MonotypicalGroupOp<T>> {
+public class RingAssert<T> {
     private final ValueGenerator<T> generator;
-    private final ADDITION addition;
-    private final MULTIPLICATION multiplication;
+    private final Ring<T> ring;
 
-    public RingAssert(ADDITION addition, MULTIPLICATION multiplication, ValueGenerator<T> generator) {
+    public RingAssert(Ring<T> ring, ValueGenerator<T> generator) {
         this.generator = generator;
-        this.addition = addition;
-        this.multiplication = multiplication;
+        this.ring = ring;
     }
     public void assertIsRing() {
         additionIsAbelianGroup();
@@ -19,25 +17,25 @@ public class RingAssert<T, ADDITION extends MonotypicalGroupOp<T>, MULTIPLICATIO
         multiplicationIsRightDistributive();
     }
     private void multiplicationIsLeftDistributive() {
-        T a = generator.generate(),
-          b = generator.generate(),
-          c = generator.generate();
+        RingMember<T> a = ring.create(generator.generate()),
+                      b = ring.create(generator.generate()),
+                      c = ring.create(generator.generate());
         assertEquals(
-                multiplication.calc(a, addition.calc(b, c)),
-                addition.calc(multiplication.calc(a, b),  multiplication.calc(a, c)));
+                a.multiply(b.add(c)),
+                a.multiply(b).add(a.multiply(c)));
     }
     private void multiplicationIsRightDistributive() {
-        T a = generator.generate(),
-                b = generator.generate(),
-                c = generator.generate();
+        RingMember<T> a = ring.create(generator.generate()),
+                      b = ring.create(generator.generate()),
+                      c = ring.create(generator.generate());
         assertEquals(
-                multiplication.calc(addition.calc(b, c), a),
-                addition.calc(multiplication.calc(b, a),  multiplication.calc(c, a)));
+                b.add(c).multiply(a),
+                b.multiply(a).add(c.multiply(a)));
     }
     private void multiplicationIsMonoid() {
-        new MonoidAssert<>(multiplication, generator).assertIsMonoid();
+        new MonoidAssert2<>(ring.toMultiplicativeMonoid(), generator).assertIsMonoid();
     }
     private void additionIsAbelianGroup() {
-        new GroupAssert<>(addition, generator).assertIsAbelianGroup();
+        new GroupAssert2<>(ring.toAdditiveGroup(), generator).assertIsAbelianGroup();
     }
 }

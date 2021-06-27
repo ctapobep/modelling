@@ -9,8 +9,11 @@ public class Real {
     public Real(BigDecimal v) {
         this.v = v;
     }
-    public BigDecimal val() {
+    public BigDecimal asBigDecimal() {
         return v;
+    }
+    public double asDouble() {
+        return v.doubleValue();
     }
 
     public boolean equals(Object o) {
