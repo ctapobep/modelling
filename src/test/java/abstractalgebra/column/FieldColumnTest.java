@@ -6,8 +6,6 @@ import abstractalgebra.reals.RealField;
 import abstractalgebra.reals.RealGenerator;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-
 public class FieldColumnTest {
     @Test public void formsGroupUnderAddition() {
         Field<Real> realField = RealField.create();
@@ -21,24 +19,7 @@ public class FieldColumnTest {
                 vectorScalarMultiplication
         );
 
-        new GroupAssert<>(vectorSpace.toVectorAdditiveGroup(), generator).assertIsAbelianGroup();
-    }
-    @Test public void scalarMultiplicationIsCompatibleWithFieldMultiplication() {
-        Field<Real> realField = RealField.create();
-        RealGenerator realGenerator = new RealGenerator();
-        FieldElement<Real> s1 = realField.create(realGenerator.generate()),
-                           s2 = realField.create(realGenerator.generate());
-        FieldColumn<Real> c = new ColumnGenerator<>(realField, realGenerator).generate();
-
-        MonotypicalGroupOp<FieldColumn<Real>> vectorAddition = new ColumnAddition<>(realField, c.dims());
-        ColumnScalarMultiplication<Real> vectorScalarMultiplication = new ColumnScalarMultiplication<>(realField, c.dims());
-        VectorSpace<Real, FieldColumn<Real>> vectorSpace = new VectorSpace<>(
-                vectorAddition,
-                vectorScalarMultiplication
-        );
-        VectorElement<Real, FieldColumn<Real>> v = vectorSpace.create(c);
-
-        assertEquals(v.multiply(s1.multiply(s2)), v.multiply(s2).multiply(s1));
+        new VectorSpacesAssert<>(generator, vectorSpace, realGenerator, realField).assertIsVectorSpace();
     }
 //    @Test public void scalarMultiplicationIsDistributiveWithRespectToVectorAddition() {
 //        ColumnGenerator columnGenerator = new ColumnGenerator(field, fieldGenerator);
