@@ -21,6 +21,7 @@ public class VectorSpacesAssert<S, V> {
         assertScalarMultiplicationIsCompatibleWithFieldMultiplication();
         assertScalarMultiplicationHasIdentity();
         assertScalarMultiplicationIsDistributiveWithRespectToVectorAddition();
+        assertScalarMultiplicationIsDistributiveWithRespectToFieldAddition();
     }
 
     private void assertVectorsFormCommutativeGroup() {
@@ -45,5 +46,13 @@ public class VectorSpacesAssert<S, V> {
                             v2 = vectorSpace.create(vectorGenerator.generate());
         FieldElement<S> s = scalarField.multiplicativeIdentity();
         assertEquals(v1.add(v2).multiply(s), v1.multiply(s).add(v2.multiply(s)));
+    }
+    private void assertScalarMultiplicationIsDistributiveWithRespectToFieldAddition() {
+        V c = vectorGenerator.generate();
+        VectorElement<S, V> v = vectorSpace.create(c);
+
+        FieldElement<S> s1 = scalarField.create(fieldValueGenerator.generate()),
+                        s2 = scalarField.create(fieldValueGenerator.generate());
+        assertEquals(v.multiply(s1.add(s2)), v.multiply(s1).add(v.multiply(s2)));
     }
 }
