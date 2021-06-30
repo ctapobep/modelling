@@ -1,7 +1,5 @@
 package abstractalgebra.abstractions;
 
-import abstractalgebra.reals.Real;
-
 import static org.junit.Assert.assertEquals;
 
 public class VectorSpacesAssert<S, V> {
@@ -21,6 +19,8 @@ public class VectorSpacesAssert<S, V> {
     public void assertIsVectorSpace() {
         assertVectorsFormCommutativeGroup();
         assertScalarMultiplicationIsCompatibleWithFieldMultiplication();
+        assertScalarMultiplicationHasIdentity();
+        assertScalarMultiplicationIsDistributiveWithRespectToVectorAddition();
     }
 
     private void assertVectorsFormCommutativeGroup() {
@@ -34,5 +34,16 @@ public class VectorSpacesAssert<S, V> {
                         s2 = scalarField.create(fieldValueGenerator.generate());
 
         assertEquals(v.multiply(s1.multiply(s2)), v.multiply(s2).multiply(s1));
+    }
+    private void assertScalarMultiplicationHasIdentity() {
+        VectorElement<S, V> v = vectorSpace.create(vectorGenerator.generate());
+        FieldElement<S> s = scalarField.multiplicativeIdentity();
+        assertEquals(v, v.multiply(s));
+    }
+    private void assertScalarMultiplicationIsDistributiveWithRespectToVectorAddition() {
+        VectorElement<S, V> v1 = vectorSpace.create(vectorGenerator.generate()),
+                            v2 = vectorSpace.create(vectorGenerator.generate());
+        FieldElement<S> s = scalarField.multiplicativeIdentity();
+        assertEquals(v1.add(v2).multiply(s), v1.multiply(s).add(v2.multiply(s)));
     }
 }
