@@ -1,22 +1,21 @@
 package abstractalgebra.abstractions;
 
-public class Field<T> {
+public class Field<T> implements ValueGenerator<FieldElement<T>>{
     private final MonotypicalGroupOp<T> add;
     private final MonotypicalGroupOp<T> multiply;
+    private final ValueGenerator<T> valueGenerator;
 
-    public Field(MonotypicalGroupOp<T> add, MonotypicalGroupOp<T> multiply) {
+    public Field(MonotypicalGroupOp<T> add, MonotypicalGroupOp<T> multiply, ValueGenerator<T> valueGenerator) {
         this.add = add;
         this.multiply = multiply;
+        this.valueGenerator = valueGenerator;
     }
 
-    public FieldElement<T> create(T t) {
-        return new FieldElement<>(t, add, multiply);
-    }
     public Ring<T> toRing() {
-        return new Ring<>(add, multiply);
+        return new Ring<>(add, multiply, valueGenerator);
     }
     public Group<T> toMultiplicativeGroup() {
-        return new Group<>(multiply);
+        return new Group<>(multiply, valueGenerator);
     }
     public MonotypicalGroupOp<T> getMultiplication() {
         return multiply;
@@ -34,5 +33,13 @@ public class Field<T> {
     }
     public FieldElement<T> additiveIdentity() {
         return create(add.identity());
+    }
+
+    public FieldElement<T> create(T t) {
+        return new FieldElement<>(t, add, multiply);
+    }
+
+    public FieldElement<T> generate() {
+        return new FieldElement<>(valueGenerator.generate(), add, multiply);
     }
 }

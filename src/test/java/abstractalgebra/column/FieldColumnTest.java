@@ -16,8 +16,8 @@ public class FieldColumnTest {
         ColumnScalarMultiplication<Real> vectorScalarMultiplication = new ColumnScalarMultiplication<>(realField, generator.dims());
         VectorSpace<Real, FieldColumn<Real>> vectorSpace = new VectorSpace<>(
                 vectorAddition,
-                vectorScalarMultiplication
-        );
+                vectorScalarMultiplication,
+                generator);
 
         new VectorSpacesAssert<>(generator, vectorSpace, realGenerator, realField).assertIsVectorSpace();
     }

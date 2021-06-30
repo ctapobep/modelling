@@ -13,13 +13,16 @@ public class RealTest {
         new GroupAssert<>(realField().toMultiplicativeGroup(), new RealGenerator()).assertIsAbelianGroup();
     }
     @Test public void formsRingUnderAdditionAndMultiplication() {
-        new RingAssert<>(new Ring<>(new RealAddition(), new RealMultiplication()), new RealGenerator()).assertIsRing();
+        RealGenerator valueGenerator = new RealGenerator();
+        new RingAssert<>(new Ring<>(new RealAddition(), new RealMultiplication(), valueGenerator), valueGenerator).assertIsRing();
     }
     @Test public void formsFieldUnderAdditionAndMultiplication() {
-        new FieldAssert<>(new Field<>(new RealAddition(), new RealMultiplication()), new RealGenerator()).assertIsField();
+        RealGenerator valueGenerator = new RealGenerator();
+        new FieldAssert<>(new Field<>(new RealAddition(), new RealMultiplication(), valueGenerator), valueGenerator).assertIsField();
     }
     @Test public void test() {
-        Field<Real> field = new Field<>(new RealAddition(), new RealMultiplication());
+        RealGenerator valueGenerator = new RealGenerator();
+        Field<Real> field = new Field<>(new RealAddition(), new RealMultiplication(), valueGenerator);
         RealGenerator reals = new RealGenerator();
         FieldElement<Real> real1 = field.create(reals.generate());
         FieldElement<Real> real2 = field.create(reals.generate());
@@ -27,6 +30,7 @@ public class RealTest {
     }
 
     static Field<Real> realField() {
-        return new Field<>(new RealAddition(), new RealMultiplication());
+        RealGenerator valueGenerator = new RealGenerator();
+        return new Field<>(new RealAddition(), new RealMultiplication(), valueGenerator);
     }
 }

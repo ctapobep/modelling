@@ -17,23 +17,23 @@ public class RingAssert<T> {
         multiplicationIsRightDistributive();
     }
     private void multiplicationIsLeftDistributive() {
-        RingMember<T> a = ring.create(generator.generate()),
-                      b = ring.create(generator.generate()),
-                      c = ring.create(generator.generate());
+        RingMember<T> a = ring.generate(),
+                      b = ring.generate(),
+                      c = ring.generate();
         assertEquals(
                 a.multiply(b.add(c)),
                 a.multiply(b).add(a.multiply(c)));
     }
     private void multiplicationIsRightDistributive() {
-        RingMember<T> a = ring.create(generator.generate()),
-                      b = ring.create(generator.generate()),
-                      c = ring.create(generator.generate());
+        RingMember<T> a = ring.generate(),
+                      b = ring.generate(),
+                      c = ring.generate();
         assertEquals(
                 b.add(c).multiply(a),
                 b.multiply(a).add(c.multiply(a)));
     }
     private void multiplicationIsMonoid() {
-        new MonoidAssert<>(ring.toMultiplicativeMonoid(), generator).assertIsMonoid();
+        new MonoidAssert<>(ring.toMultiplicativeMonoid()).assertIsMonoid();
     }
     private void additionIsAbelianGroup() {
         new GroupAssert<>(ring.toAdditiveGroup(), generator).assertIsAbelianGroup();

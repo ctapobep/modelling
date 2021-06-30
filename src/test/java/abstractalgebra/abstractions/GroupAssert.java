@@ -20,13 +20,13 @@ public class GroupAssert<T, OP extends MonotypicalGroupOp<T>> {
     }
     public void assertIsGroup() {
         // monoids are associative and have identity element
-        new MonoidAssert<>(group.toMonoid(), generator).assertIsMonoid();
+        new MonoidAssert<>(group.toMonoid()).assertIsMonoid();
         new InvertibilityAssert<>(group.getOp(), generator).assertHasInverse();
     }
 
     private void assertCommutative() {
-        GroupElement<T> a = group.create(generator.generate());
-        GroupElement<T> b = group.create(generator.generate());
+        GroupElement<T> a = group.generate();
+        GroupElement<T> b = group.generate();
         assertEquals(a.add(b), b.add(a));
     }
 }
