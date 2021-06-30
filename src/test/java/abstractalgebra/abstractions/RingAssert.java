@@ -17,7 +17,7 @@ public class RingAssert<T> {
         multiplicationIsRightDistributive();
     }
     private void multiplicationIsLeftDistributive() {
-        RingMember<T> a = ring.generate(),
+        RingElement<T> a = ring.generate(),
                       b = ring.generate(),
                       c = ring.generate();
         assertEquals(
@@ -25,7 +25,7 @@ public class RingAssert<T> {
                 a.multiply(b).add(a.multiply(c)));
     }
     private void multiplicationIsRightDistributive() {
-        RingMember<T> a = ring.generate(),
+        RingElement<T> a = ring.generate(),
                       b = ring.generate(),
                       c = ring.generate();
         assertEquals(

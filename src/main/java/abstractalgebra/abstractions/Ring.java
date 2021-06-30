@@ -1,6 +1,6 @@
 package abstractalgebra.abstractions;
 
-public class Ring<T> implements ValueGenerator<RingMember<T>> {
+public class Ring<T> implements ValueGenerator<RingElement<T>> {
     private final MonotypicalGroupOp<T> add;
     private final MonotypicalGroupOp<T> multiply;
     private final ValueGenerator<T> valueGenerator;
@@ -11,8 +11,8 @@ public class Ring<T> implements ValueGenerator<RingMember<T>> {
         this.valueGenerator = valueGenerator;
     }
 
-    public RingMember<T> create(T t) {
-        return new RingMember<>(t, add, multiply);
+    public RingElement<T> create(T t) {
+        return new RingElement<>(t, add, multiply);
     }
 
     public Group<T> toAdditiveGroup() {
@@ -21,7 +21,7 @@ public class Ring<T> implements ValueGenerator<RingMember<T>> {
     public Monoid<T> toMultiplicativeMonoid() {
         return new Monoid<>(multiply, valueGenerator);
     }
-    @Override public RingMember<T> generate() {
-        return new RingMember<>(valueGenerator.generate(), add, multiply);
+    @Override public RingElement<T> generate() {
+        return new RingElement<>(valueGenerator.generate(), add, multiply);
     }
 }
