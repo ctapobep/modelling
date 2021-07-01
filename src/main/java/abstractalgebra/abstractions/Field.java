@@ -18,9 +18,6 @@ public class Field<T> implements ValueGenerator<FieldElement<T>>{
     public Group<T> toMultiplicativeGroup() {
         return new Group<>(multiply, valueGenerator);
     }
-    public MonotypicalGroupOp<T> getMultiplication() {
-        return multiply;
-    }
 
     public FieldElement<T> multiplicativeInverse(FieldElement<T> t) {
         return create(multiply.inverse(t.val()));
@@ -36,10 +33,10 @@ public class Field<T> implements ValueGenerator<FieldElement<T>>{
         return create(add.identity());
     }
 
-    public FieldElement<T> create(T t) {
-        return new FieldElement<>(t, add, multiply);
-    }
     public FieldElement<T> random() {
         return new FieldElement<>(valueGenerator.random(), add, multiply);
+    }
+    public FieldElement<T> create(T t) {
+        return new FieldElement<>(t, add, multiply);
     }
 }

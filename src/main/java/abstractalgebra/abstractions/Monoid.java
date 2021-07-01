@@ -10,14 +10,15 @@ public class Monoid<T> implements ValueGenerator<MonoidElement<T>> {
         new MonoidAssert<>(this).assertIsMonoid();
     }
 
-    public MonoidElement<T> create(T t) {
-        return new MonoidElement<>(t, add);
-    }
     public MonoidElement<T> identity() {
-        return new MonoidElement<>(add.identity(), add);
+        return create(add.identity());
     }
 
+
     public MonoidElement<T> random() {
-        return new MonoidElement<>(valueGenerator.random(), add);
+        return create(valueGenerator.random());
+    }
+    private MonoidElement<T> create(T t) {
+        return new MonoidElement<>(t, add);
     }
 }

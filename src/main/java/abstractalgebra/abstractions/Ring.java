@@ -12,7 +12,6 @@ public class Ring<T> implements ValueGenerator<RingElement<T>> {
         new RingAssert<>(this).assertIsRing();
     }
 
-
     public Group<T> toAdditiveGroup() {
         return new Group<>(add, valueGenerator);
     }

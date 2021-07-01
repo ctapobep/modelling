@@ -17,9 +17,7 @@ public class Group<T> implements MagmaElement<T>, ValueGenerator<GroupElement<T>
     public Monoid<T> toMonoid() {
         return new Monoid<>(add, valueGenerator);
     }
-    public MonotypicalGroupOp<T> getOp() {
-        return add;
-    }
+
 
     public GroupElement<T> random() {
         return new GroupElement<>(valueGenerator.random(), add);
