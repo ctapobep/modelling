@@ -1,4 +1,1 @@
-advanced-math
-=============
-
-Algorithms and math
+Abstract & Linear algebra described via OOP.

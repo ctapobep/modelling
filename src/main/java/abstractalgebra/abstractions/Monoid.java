@@ -7,6 +7,7 @@ public class Monoid<T> implements ValueGenerator<MonoidElement<T>> {
     public Monoid(MonotypicalGroupOp<T> add, ValueGenerator<T> valueGenerator) {
         this.add = add;
         this.valueGenerator = valueGenerator;
+        new MonoidAssert<>(this).assertIsMonoid();
     }
 
     public MonoidElement<T> create(T t) {

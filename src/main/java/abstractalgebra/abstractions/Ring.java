@@ -9,6 +9,7 @@ public class Ring<T> implements ValueGenerator<RingElement<T>> {
         this.add = add;
         this.multiply = multiply;
         this.valueGenerator = valueGenerator;
+        new RingAssert<>(this).assertIsRing();
     }
 
 

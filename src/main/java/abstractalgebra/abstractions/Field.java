@@ -9,6 +9,7 @@ public class Field<T> implements ValueGenerator<FieldElement<T>>{
         this.add = add;
         this.multiply = multiply;
         this.valueGenerator = valueGenerator;
+        new FieldAssert<>(this).assertIsField();
     }
 
     public Ring<T> toRing() {

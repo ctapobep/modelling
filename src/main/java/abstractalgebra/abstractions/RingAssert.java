@@ -16,8 +16,8 @@ public class RingAssert<T> {
     }
     private void multiplicationIsLeftDistributive() {
         RingElement<T> a = ring.random(),
-                      b = ring.random(),
-                      c = ring.random();
+                       b = ring.random(),
+                       c = ring.random();
         assertEquals(
                 a.multiply(b.add(c)),
                 a.multiply(b).add(a.multiply(c)));

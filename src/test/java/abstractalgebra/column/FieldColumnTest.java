@@ -1,6 +1,7 @@
 package abstractalgebra.column;
 
 import abstractalgebra.abstractions.*;
+import abstractalgebra.abstractions.VectorSpacesAssert;
 import abstractalgebra.reals.Real;
 import abstractalgebra.reals.RealField;
 import org.junit.Test;

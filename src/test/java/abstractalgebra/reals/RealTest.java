@@ -1,6 +1,9 @@
 package abstractalgebra.reals;
 
 import abstractalgebra.abstractions.*;
+import abstractalgebra.abstractions.FieldAssert;
+import abstractalgebra.abstractions.GroupAssert;
+import abstractalgebra.abstractions.RingAssert;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
