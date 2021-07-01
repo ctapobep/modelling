@@ -7,17 +7,16 @@ public class Group<T> implements MagmaElement<T>, ValueGenerator<GroupElement<T>
     public Group(MonotypicalGroupOp<T> add, ValueGenerator<T> valueGenerator) {
         this.add = add;
         this.valueGenerator = valueGenerator;
-        new GroupAssert<>(this).assertIsAbelianGroup();
-    }
-
-    public GroupElement<T> identity() {
-        return create(add.identity());
+        new GroupAssert<>(this).assertIsCommutativeGroup();
     }
 
     public Monoid<T> toMonoid() {
         return new Monoid<>(add, valueGenerator);
     }
 
+    public GroupElement<T> identity() {
+        return create(add.identity());
+    }
 
     public GroupElement<T> random() {
         return new GroupElement<>(valueGenerator.random(), add);

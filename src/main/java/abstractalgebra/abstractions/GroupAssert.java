@@ -12,7 +12,7 @@ public class GroupAssert<T> {
     /**
      * aka Commutative Group
      */
-    public void assertIsAbelianGroup() {
+    public void assertIsCommutativeGroup() {
         assertIsGroup();
         assertCommutative();
     }

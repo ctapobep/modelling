@@ -34,6 +34,6 @@ public class RingAssert<T> {
         new MonoidAssert<>(ring.toMultiplicativeMonoid()).assertIsMonoid();
     }
     private void additionIsAbelianGroup() {
-        new GroupAssert<>(ring.toAdditiveGroup()).assertIsAbelianGroup();
+        new GroupAssert<>(ring.toAdditiveGroup()).assertIsCommutativeGroup();
     }
 }

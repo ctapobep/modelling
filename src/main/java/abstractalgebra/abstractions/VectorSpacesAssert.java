@@ -20,7 +20,7 @@ public class VectorSpacesAssert<S, V> {
     }
 
     private void assertVectorsFormCommutativeGroup() {
-        new GroupAssert<>(vectorSpace.toVectorAdditiveGroup()).assertIsAbelianGroup();
+        new GroupAssert<>(vectorSpace.toVectorAdditiveGroup()).assertIsCommutativeGroup();
     }
     private void assertScalarMultiplicationIsCompatibleWithFieldMultiplication() {
         VectorElement<S, V> v = vectorSpace.random();

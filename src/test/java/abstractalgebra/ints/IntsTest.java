@@ -1,12 +1,11 @@
 package abstractalgebra.ints;
 
-import abstractalgebra.abstractions.Group;
-import abstractalgebra.abstractions.GroupAssert;
+import abstractalgebra.abstractions.CommutativeGroup;
 import org.junit.Test;
 
 public class IntsTest {
-    @Test public void formsAbelianGroupUnderAddition() {
+    @Test public void formsCommutativeGroupUnderAddition() {
         IntGenerator intGenerator = new IntGenerator();
-        new GroupAssert<>(new Group<>(new IntAddition(), intGenerator)).assertIsAbelianGroup();
+        new CommutativeGroup<>(new IntAddition(), intGenerator);
     }
 }
