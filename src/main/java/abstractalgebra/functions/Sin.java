@@ -13,7 +13,7 @@ public class Sin implements Function<Real, FieldElement<Real>> {
         this.field = field;
     }
 
-    @Override public FieldElement<Real> get(FieldElement<Real> real) {
+    public FieldElement<Real> get(FieldElement<Real> real) {
         double sin = Math.sin(real.val().asDouble());
         return field.create(new Real(BigDecimal.valueOf(sin)));
     }

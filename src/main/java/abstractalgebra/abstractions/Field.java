@@ -38,8 +38,7 @@ public class Field<T> implements ValueGenerator<FieldElement<T>>{
     public FieldElement<T> create(T t) {
         return new FieldElement<>(t, add, multiply);
     }
-
-    public FieldElement<T> generate() {
-        return new FieldElement<>(valueGenerator.generate(), add, multiply);
+    public FieldElement<T> random() {
+        return new FieldElement<>(valueGenerator.random(), add, multiply);
     }
 }

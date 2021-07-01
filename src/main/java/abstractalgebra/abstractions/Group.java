@@ -13,9 +13,6 @@ public class Group<T> implements MagmaElement<T>, ValueGenerator<GroupElement<T>
         return create(add.identity());
     }
 
-    public GroupElement<T> create(T t) {
-        return new GroupElement<>(t, add);
-    }
     public Monoid<T> toMonoid() {
         return new Monoid<>(add, valueGenerator);
     }
@@ -23,7 +20,10 @@ public class Group<T> implements MagmaElement<T>, ValueGenerator<GroupElement<T>
         return add;
     }
 
-    public GroupElement<T> generate() {
-        return new GroupElement<>(valueGenerator.generate(), add);
+    public GroupElement<T> random() {
+        return new GroupElement<>(valueGenerator.random(), add);
+    }
+    private GroupElement<T> create(T t) {
+        return new GroupElement<>(t, add);
     }
 }

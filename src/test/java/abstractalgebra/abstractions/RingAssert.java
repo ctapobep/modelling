@@ -15,17 +15,17 @@ public class RingAssert<T> {
         multiplicationIsRightDistributive();
     }
     private void multiplicationIsLeftDistributive() {
-        RingElement<T> a = ring.generate(),
-                      b = ring.generate(),
-                      c = ring.generate();
+        RingElement<T> a = ring.random(),
+                      b = ring.random(),
+                      c = ring.random();
         assertEquals(
                 a.multiply(b.add(c)),
                 a.multiply(b).add(a.multiply(c)));
     }
     private void multiplicationIsRightDistributive() {
-        RingElement<T> a = ring.generate(),
-                      b = ring.generate(),
-                      c = ring.generate();
+        RingElement<T> a = ring.random(),
+                      b = ring.random(),
+                      c = ring.random();
         assertEquals(
                 b.add(c).multiply(a),
                 b.multiply(a).add(c.multiply(a)));

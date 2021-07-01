@@ -10,7 +10,7 @@ public class InvertibilityAssert<T> {
     }
 
     public void assertHasInverse() {
-        GroupElement<T> a = group.generate();
+        GroupElement<T> a = group.random();
         assertEquals(group.identity(), a.add(a.inverse()));
     }
 }

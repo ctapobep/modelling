@@ -3,17 +3,12 @@ package abstractalgebra.abstractions;
 import static org.junit.Assert.assertEquals;
 
 public class VectorSpacesAssert<S, V> {
-    private final ValueGenerator<V> vectorGenerator;
     private final VectorSpace<S, V> vectorSpace;
     private final Field<S> scalarField;
-    private final ValueGenerator<S> fieldValueGenerator;
 
-    public VectorSpacesAssert(ValueGenerator<V> vectorGenerator, VectorSpace<S, V> vectorSpace,
-                              ValueGenerator<S> fieldValueGenerator, Field<S> scalarField) {
-        this.vectorGenerator = vectorGenerator;
+    public VectorSpacesAssert(VectorSpace<S, V> vectorSpace, Field<S> scalarField) {
         this.vectorSpace = vectorSpace;
         this.scalarField = scalarField;
-        this.fieldValueGenerator = fieldValueGenerator;
     }
 
     public void assertIsVectorSpace() {
@@ -28,31 +23,26 @@ public class VectorSpacesAssert<S, V> {
         new GroupAssert<>(vectorSpace.toVectorAdditiveGroup()).assertIsAbelianGroup();
     }
     private void assertScalarMultiplicationIsCompatibleWithFieldMultiplication() {
-        V c = vectorGenerator.generate();
-        VectorElement<S, V> v = vectorSpace.create(c);
-
-        FieldElement<S> s1 = scalarField.create(fieldValueGenerator.generate()),
-                        s2 = scalarField.create(fieldValueGenerator.generate());
-
+        VectorElement<S, V> v = vectorSpace.random();
+        FieldElement<S> s1 = scalarField.random(),
+                        s2 = scalarField.random();
         assertEquals(v.multiply(s1.multiply(s2)), v.multiply(s2).multiply(s1));
     }
     private void assertScalarMultiplicationHasIdentity() {
-        VectorElement<S, V> v = vectorSpace.create(vectorGenerator.generate());
+        VectorElement<S, V> v = vectorSpace.random();
         FieldElement<S> s = scalarField.multiplicativeIdentity();
         assertEquals(v, v.multiply(s));
     }
     private void assertScalarMultiplicationIsDistributiveWithRespectToVectorAddition() {
-        VectorElement<S, V> v1 = vectorSpace.create(vectorGenerator.generate()),
-                            v2 = vectorSpace.create(vectorGenerator.generate());
+        VectorElement<S, V> v1 = vectorSpace.random(),
+                            v2 = vectorSpace.random();
         FieldElement<S> s = scalarField.multiplicativeIdentity();
         assertEquals(v1.add(v2).multiply(s), v1.multiply(s).add(v2.multiply(s)));
     }
     private void assertScalarMultiplicationIsDistributiveWithRespectToFieldAddition() {
-        V c = vectorGenerator.generate();
-        VectorElement<S, V> v = vectorSpace.create(c);
-
-        FieldElement<S> s1 = scalarField.create(fieldValueGenerator.generate()),
-                        s2 = scalarField.create(fieldValueGenerator.generate());
+        VectorElement<S, V> v = vectorSpace.random();
+        FieldElement<S> s1 = scalarField.random(),
+                        s2 = scalarField.random();
         assertEquals(v.multiply(s1.add(s2)), v.multiply(s1).add(v.multiply(s2)));
     }
 }

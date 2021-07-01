@@ -3,14 +3,12 @@ package abstractalgebra.column;
 import abstractalgebra.abstractions.*;
 import abstractalgebra.reals.Real;
 import abstractalgebra.reals.RealField;
-import abstractalgebra.reals.RealGenerator;
 import org.junit.Test;
 
 public class FieldColumnTest {
     @Test public void formsGroupUnderAddition() {
         Field<Real> realField = RealField.create();
-        RealGenerator realGenerator = new RealGenerator();
-        ColumnGenerator<Real> generator = new ColumnGenerator<>(realField, realGenerator);
+        ColumnGenerator<Real> generator = new ColumnGenerator<>(realField);
 
         MonotypicalGroupOp<FieldColumn<Real>> vectorAddition = new ColumnAddition<>(realField, generator.dims());
         ColumnScalarMultiplication<Real> vectorScalarMultiplication = new ColumnScalarMultiplication<>(realField, generator.dims());
@@ -19,7 +17,7 @@ public class FieldColumnTest {
                 vectorScalarMultiplication,
                 generator);
 
-        new VectorSpacesAssert<>(generator, vectorSpace, realGenerator, realField).assertIsVectorSpace();
+        new VectorSpacesAssert<>(vectorSpace, realField).assertIsVectorSpace();
     }
 //    @Test public void scalarMultiplicationIsDistributiveWithRespectToVectorAddition() {
 //        ColumnGenerator columnGenerator = new ColumnGenerator(field, fieldGenerator);

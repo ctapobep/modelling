@@ -23,8 +23,8 @@ public class GroupAssert<T> {
     }
 
     private void assertCommutative() {
-        GroupElement<T> a = group.generate();
-        GroupElement<T> b = group.generate();
+        GroupElement<T> a = group.random();
+        GroupElement<T> b = group.random();
         assertEquals(a.add(b), b.add(a));
     }
 }

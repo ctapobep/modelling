@@ -11,9 +11,6 @@ public class Ring<T> implements ValueGenerator<RingElement<T>> {
         this.valueGenerator = valueGenerator;
     }
 
-    public RingElement<T> create(T t) {
-        return new RingElement<>(t, add, multiply);
-    }
 
     public Group<T> toAdditiveGroup() {
         return new Group<>(add, valueGenerator);
@@ -21,7 +18,11 @@ public class Ring<T> implements ValueGenerator<RingElement<T>> {
     public Monoid<T> toMultiplicativeMonoid() {
         return new Monoid<>(multiply, valueGenerator);
     }
-    @Override public RingElement<T> generate() {
-        return new RingElement<>(valueGenerator.generate(), add, multiply);
+
+    public RingElement<T> random() {
+        return create(valueGenerator.random());
+    }
+    private RingElement<T> create(T t) {
+        return new RingElement<>(t, add, multiply);
     }
 }

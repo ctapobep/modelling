@@ -16,7 +16,7 @@ public class Monoid<T> implements ValueGenerator<MonoidElement<T>> {
         return new MonoidElement<>(add.identity(), add);
     }
 
-    public MonoidElement<T> generate() {
-        return new MonoidElement<>(valueGenerator.generate(), add);
+    public MonoidElement<T> random() {
+        return new MonoidElement<>(valueGenerator.random(), add);
     }
 }

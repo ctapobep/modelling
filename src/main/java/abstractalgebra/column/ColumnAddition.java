@@ -31,7 +31,7 @@ public class ColumnAddition<T> implements MonotypicalGroupOp<FieldColumn<T>> {
     public FieldColumn<T> inverse(FieldColumn<T> a) {
         FieldElement<T>[] result = new FieldElement[a.dims()];
         for (int i = 0; i < result.length; i++)
-            result[i] = field.create(field.toRing().toAdditiveGroup().getOp().inverse(a.get(i).val()));
+            result[i] = a.get(i).additiveInverse();
         return new FieldColumn<>(result);
     }
 }
