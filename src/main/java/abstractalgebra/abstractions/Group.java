@@ -9,6 +9,10 @@ public class Group<T> implements MagmaElement<T>, ValueGenerator<GroupElement<T>
         this.valueGenerator = valueGenerator;
     }
 
+    public GroupElement<T> identity() {
+        return create(add.identity());
+    }
+
     public GroupElement<T> create(T t) {
         return new GroupElement<>(t, add);
     }

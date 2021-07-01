@@ -3,11 +3,9 @@ package abstractalgebra.abstractions;
 import static org.junit.Assert.assertEquals;
 
 public class RingAssert<T> {
-    private final ValueGenerator<T> generator;
     private final Ring<T> ring;
 
-    public RingAssert(Ring<T> ring, ValueGenerator<T> generator) {
-        this.generator = generator;
+    public RingAssert(Ring<T> ring) {
         this.ring = ring;
     }
     public void assertIsRing() {
@@ -36,6 +34,6 @@ public class RingAssert<T> {
         new MonoidAssert<>(ring.toMultiplicativeMonoid()).assertIsMonoid();
     }
     private void additionIsAbelianGroup() {
-        new GroupAssert<>(ring.toAdditiveGroup(), generator).assertIsAbelianGroup();
+        new GroupAssert<>(ring.toAdditiveGroup()).assertIsAbelianGroup();
     }
 }

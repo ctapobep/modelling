@@ -7,18 +7,16 @@ import static org.junit.Assert.assertEquals;
 
 public class RealTest {
     @Test public void formsAbelianGroupUnderAddition() {
-        new GroupAssert<>(realField().toRing().toAdditiveGroup(), new RealGenerator()).assertIsAbelianGroup();
+        new GroupAssert<>(realField().toRing().toAdditiveGroup()).assertIsAbelianGroup();
     }
     @Test public void formsAbelianGroupUnderMultiplication() {
-        new GroupAssert<>(realField().toMultiplicativeGroup(), new RealGenerator()).assertIsAbelianGroup();
+        new GroupAssert<>(realField().toMultiplicativeGroup()).assertIsAbelianGroup();
     }
     @Test public void formsRingUnderAdditionAndMultiplication() {
-        RealGenerator valueGenerator = new RealGenerator();
-        new RingAssert<>(new Ring<>(new RealAddition(), new RealMultiplication(), valueGenerator), valueGenerator).assertIsRing();
+        new RingAssert<>(new Ring<>(new RealAddition(), new RealMultiplication(), new RealGenerator())).assertIsRing();
     }
     @Test public void formsFieldUnderAdditionAndMultiplication() {
-        RealGenerator valueGenerator = new RealGenerator();
-        new FieldAssert<>(new Field<>(new RealAddition(), new RealMultiplication(), valueGenerator), valueGenerator).assertIsField();
+        new FieldAssert<>(RealField.create()).assertIsField();
     }
     @Test public void test() {
         RealGenerator valueGenerator = new RealGenerator();

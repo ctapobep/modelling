@@ -2,14 +2,12 @@ package abstractalgebra.abstractions;
 
 public class FieldAssert<T> {
     private final Field<T> field;
-    private final ValueGenerator<T> generator;
 
-    public FieldAssert(Field<T> field, ValueGenerator<T> generator) {
+    public FieldAssert(Field<T> field) {
         this.field = field;
-        this.generator = generator;
     }
     public void assertIsField() {
-        new RingAssert<>(field.toRing(), generator).assertIsRing();
-        new InvertibilityAssert<>(field.getMultiplication(), generator).assertHasInverse();
+        new RingAssert<>(field.toRing()).assertIsRing();
+        new InvertibilityAssert<>(field.toMultiplicativeGroup()).assertHasInverse();
     }
 }

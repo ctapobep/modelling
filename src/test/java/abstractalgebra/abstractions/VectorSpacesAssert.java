@@ -25,7 +25,7 @@ public class VectorSpacesAssert<S, V> {
     }
 
     private void assertVectorsFormCommutativeGroup() {
-        new GroupAssert<>(vectorSpace.toVectorAdditiveGroup(), vectorGenerator).assertIsAbelianGroup();
+        new GroupAssert<>(vectorSpace.toVectorAdditiveGroup()).assertIsAbelianGroup();
     }
     private void assertScalarMultiplicationIsCompatibleWithFieldMultiplication() {
         V c = vectorGenerator.generate();

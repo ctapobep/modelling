@@ -2,17 +2,15 @@ package abstractalgebra.abstractions;
 
 import static org.junit.Assert.assertEquals;
 
-public class InvertibilityAssert<T, OP extends MonotypicalGroupOp<T>> {
-    private final ValueGenerator<T> generator;
-    private final OP op;
+public class InvertibilityAssert<T> {
+    private final Group<T> group;
 
-    public InvertibilityAssert(OP op, ValueGenerator<T> generator) {
-        this.generator = generator;
-        this.op = op;
+    public InvertibilityAssert(Group<T> group) {
+        this.group = group;
     }
 
     public void assertHasInverse() {
-        T a = generator.generate();
-        assertEquals(op.identity(), op.calc(a, op.inverse(a)));
+        GroupElement<T> a = group.generate();
+        assertEquals(group.identity(), a.add(a.inverse()));
     }
 }

@@ -7,6 +7,6 @@ import org.junit.Test;
 public class IntsTest {
     @Test public void formsAbelianGroupUnderAddition() {
         IntGenerator intGenerator = new IntGenerator();
-        new GroupAssert<>(new Group<>(new IntAddition(), intGenerator), intGenerator).assertIsAbelianGroup();
+        new GroupAssert<>(new Group<>(new IntAddition(), intGenerator)).assertIsAbelianGroup();
     }
 }
