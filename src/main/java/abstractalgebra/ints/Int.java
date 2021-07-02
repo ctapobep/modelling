@@ -7,7 +7,7 @@ public class Int {
     public Int(int v) {
         this.v = v;
     }
-    public int val() {
+    int val() {
         return v;
     }
     @Override public boolean equals(Object o) {
