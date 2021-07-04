@@ -16,7 +16,7 @@ public class Ring<T> implements ValueGenerator<RingElement<T>> {
         return new Group<>(add, valueGenerator);
     }
     public Monoid<T> toMultiplicativeMonoid() {
-        return new Monoid<>(multiply, valueGenerator);
+        return new Monoid<>(multiply, new ExcludingValueGenerator<>(valueGenerator, add.identity()));
     }
 
     public RingElement<T> random() {

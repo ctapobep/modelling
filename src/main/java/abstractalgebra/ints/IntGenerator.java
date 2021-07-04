@@ -10,7 +10,7 @@ public class IntGenerator {
         return () -> new Int(integer(), new MinMaxValidator(Integer.MIN_VALUE, Integer.MAX_VALUE));
     }
     public static ValueGenerator<Int> nonnegativeInts(int maxExclusive) {
-        return () -> new Int(integer(0), new MinMaxValidator(0, maxExclusive - 1));
+        return () -> new Int(integer(maxExclusive-1), new MinMaxValidator(0, maxExclusive - 1));
     }
     public static ValueGenerator<Int> positiveInts(int maxExclusive) {
         return () -> new Int(integer(1, maxExclusive-1), new NonZeroValidator());

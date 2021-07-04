@@ -12,4 +12,7 @@ public class IntsTest {
     @Test public void nonZeroIntsFormCommutativeGroupUnderMultiplication() {
         Ints.finiteMultiplicativeGroup();
     }
+    @Test public void modPrimeNumber_formsField() {
+        Ints.finiteField();
+    }
 }

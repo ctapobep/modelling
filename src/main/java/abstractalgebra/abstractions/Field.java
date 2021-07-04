@@ -16,7 +16,7 @@ public class Field<T> implements ValueGenerator<FieldElement<T>>{
         return new Ring<>(add, multiply, valueGenerator);
     }
     public Group<T> toMultiplicativeGroup() {
-        return new Group<>(multiply, valueGenerator);
+        return new Group<>(multiply, new ExcludingValueGenerator<>(valueGenerator, add.identity()));
     }
 
     public FieldElement<T> multiplicativeInverse(FieldElement<T> t) {

@@ -1,6 +1,7 @@
 package abstractalgebra.ints;
 
 import abstractalgebra.abstractions.CommutativeGroup;
+import abstractalgebra.abstractions.Field;
 
 import static io.qala.datagen.RandomShortApi.integer;
 
@@ -27,5 +28,14 @@ public class Ints {
         return new CommutativeGroup<>(
                 new ModMultiplication(module, validator),
                 IntGenerator.positiveInts(module));
+    }
+    public static Field<Int> finiteField() {
+        int module = IntGenerator.primeInts().random().val();
+        AllIntsValidator allInts = new AllIntsValidator();
+        return new Field<>(
+                new ModAddition(module, allInts),
+                new ModMultiplication(module, allInts),
+                IntGenerator.nonnegativeInts(module)
+        );
     }
 }
