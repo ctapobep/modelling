@@ -16,7 +16,7 @@ public class Ints {
         AllIntsValidator validator = new AllIntsValidator();
         return new CommutativeGroup<>(
                 new ModAddition(module, validator),
-                IntGenerator.nonnegativeInts());
+                IntGenerator.nonnegativeInts(module));
     }
 
     public static CommutativeGroup<Int> finiteMultiplicativeGroup() {
@@ -26,6 +26,6 @@ public class Ints {
         ValueValidator<Integer> validator = new NonZeroValidator();
         return new CommutativeGroup<>(
                 new ModMultiplication(module, validator),
-                IntGenerator.nonZeroInts());
+                IntGenerator.positiveInts(module));
     }
 }
