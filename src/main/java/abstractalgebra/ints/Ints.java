@@ -23,7 +23,7 @@ public class Ints {
     }
 
     public static CommutativeGroup<Int> finiteMultiplicativeGroup() {
-        return finiteMultiplicativeGroup(IntGenerator.primeInts().random().val());
+        return finiteMultiplicativeGroup(IntGenerator.primeInts().random().asInt());
     }
     public static CommutativeGroup<Int> finiteMultiplicativeGroup(int module) {
         ValueValidator<BigInteger> validator = new NonZeroValidator();
@@ -32,7 +32,7 @@ public class Ints {
                 IntGenerator.positiveInts(module));
     }
     public static Field<Int> finiteField() {
-        int module = IntGenerator.primeInts().random().val();
+        int module = IntGenerator.primeInts().random().asInt();
         AllIntsValidator allInts = new AllIntsValidator();
         return new Field<>(
                 new ModAddition(module, allInts),

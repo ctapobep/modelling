@@ -19,7 +19,7 @@ public class Int {
         this.v = new BigInteger(v + "");
         this.validator = validator;
     }
-    int val() {
+    int asInt() {
         return v.intValueExact();
     }
     public boolean equals(Object o) {

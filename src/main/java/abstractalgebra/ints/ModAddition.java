@@ -17,7 +17,7 @@ public class ModAddition implements MonotypicalGroupOp<Int> {
         return new Int(o1.v.add(o2.v).mod(module), validator);
     }
     public Int identity() {
-        return new Int(0, validator);
+        return new Int(BigInteger.ZERO, validator);
     }
     public Int inverse(Int a) {
         return new Int(module.subtract(a.v), validator);

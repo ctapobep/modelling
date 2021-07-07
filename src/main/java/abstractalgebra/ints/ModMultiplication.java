@@ -17,7 +17,7 @@ public class ModMultiplication implements MonotypicalGroupOp<Int> {
         return new Int(o1.v.multiply(o2.v).mod(module), validator);
     }
     public Int identity() {
-        return new Int(1, validator);
+        return new Int(BigInteger.ONE, validator);
     }
     public Int inverse(Int a) {
         for (BigInteger i = BigInteger.ONE; i.compareTo(module) < 0; i = i.add(BigInteger.ONE)) // well, I'm not a very good mathematician as you can see..
