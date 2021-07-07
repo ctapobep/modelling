@@ -6,9 +6,9 @@ import java.math.BigInteger;
 
 public class ModAddition implements MonotypicalGroupOp<Int> {
     private final BigInteger module;
-    private final ValueValidator<Integer> validator;
+    private final ValueValidator<BigInteger> validator;
 
-    public ModAddition(int module, ValueValidator<Integer> validator) {
+    public ModAddition(int module, ValueValidator<BigInteger> validator) {
         this.module = new BigInteger(module + "");
         this.validator = validator;
     }

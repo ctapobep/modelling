@@ -4,18 +4,18 @@ import java.math.BigInteger;
 
 public class Int {
     final BigInteger v;
-    final ValueValidator<Integer> validator;
+    final ValueValidator<BigInteger> validator;
 
-    public Int(int v, ValueValidator<Integer> validator) {
-        validator.assertValid(v);
-        this.v = new BigInteger(v + "");
+    public Int(int v, ValueValidator<BigInteger> validator) {
+        this.v = BigInteger.valueOf(v);
+        validator.assertValid(this.v);
         this.validator = validator;
     }
     public Int(BigInteger v) {
         this(v, new MinMaxValidator(Integer.MIN_VALUE, Integer.MAX_VALUE));
     }
-    public Int(BigInteger v, ValueValidator<Integer> validator) {
-        validator.assertValid(v.intValueExact());
+    public Int(BigInteger v, ValueValidator<BigInteger> validator) {
+        validator.assertValid(v);
         this.v = new BigInteger(v + "");
         this.validator = validator;
     }

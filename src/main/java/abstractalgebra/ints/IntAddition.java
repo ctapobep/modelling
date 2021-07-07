@@ -5,9 +5,9 @@ import abstractalgebra.abstractions.MonotypicalGroupOp;
 import java.math.BigInteger;
 
 public class IntAddition implements MonotypicalGroupOp<Int> {
-    private final ValueValidator<Integer> validator;
+    private final ValueValidator<BigInteger> validator;
 
-    public IntAddition(ValueValidator<Integer> validator) {
+    public IntAddition(ValueValidator<BigInteger> validator) {
         this.validator = validator;
     }
 

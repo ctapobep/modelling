@@ -6,9 +6,9 @@ import java.math.BigInteger;
 
 public class ModMultiplication implements MonotypicalGroupOp<Int> {
     private final BigInteger module;
-    private final ValueValidator<Integer> validator;
+    private final ValueValidator<BigInteger> validator;
 
-    public ModMultiplication(int module, ValueValidator<Integer> validator) {
+    public ModMultiplication(int module, ValueValidator<BigInteger> validator) {
         this.module = BigInteger.valueOf(module);
         this.validator = validator;
     }

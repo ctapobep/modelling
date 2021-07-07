@@ -3,6 +3,8 @@ package abstractalgebra.ints;
 import abstractalgebra.abstractions.CommutativeGroup;
 import abstractalgebra.abstractions.Field;
 
+import java.math.BigInteger;
+
 import static io.qala.datagen.RandomShortApi.integer;
 
 @SuppressWarnings("UnusedReturnValue")
@@ -24,7 +26,7 @@ public class Ints {
         return finiteMultiplicativeGroup(IntGenerator.primeInts().random().val());
     }
     public static CommutativeGroup<Int> finiteMultiplicativeGroup(int module) {
-        ValueValidator<Integer> validator = new NonZeroValidator();
+        ValueValidator<BigInteger> validator = new NonZeroValidator();
         return new CommutativeGroup<>(
                 new ModMultiplication(module, validator),
                 IntGenerator.positiveInts(module));
