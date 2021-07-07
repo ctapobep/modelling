@@ -6,9 +6,6 @@ public class Int {
     final BigInteger v;
     final ValueValidator<Integer> validator;
 
-    public Int(int v) {
-        this(v, new MinMaxValidator(Integer.MIN_VALUE, Integer.MAX_VALUE));
-    }
     public Int(int v, ValueValidator<Integer> validator) {
         validator.assertValid(v);
         this.v = new BigInteger(v + "");

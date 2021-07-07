@@ -2,6 +2,8 @@ package abstractalgebra.ints;
 
 import abstractalgebra.abstractions.MonotypicalGroupOp;
 
+import java.math.BigInteger;
+
 public class IntAddition implements MonotypicalGroupOp<Int> {
     private final ValueValidator<Integer> validator;
 
@@ -10,12 +12,12 @@ public class IntAddition implements MonotypicalGroupOp<Int> {
     }
 
     public Int calc(Int o1, Int o2) {
-        return new Int(o1.val() + o2.val(), validator);
+        return new Int(o1.v.add(o2.v), validator);
     }
     public Int identity() {
-        return new Int(0, validator);
+        return new Int(BigInteger.ZERO, validator);
     }
     public Int inverse(Int a) {
-        return new Int(-a.val(), validator);
+        return new Int(a.v.negate(), validator);
     }
 }
