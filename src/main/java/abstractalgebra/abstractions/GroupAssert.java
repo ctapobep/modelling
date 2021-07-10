@@ -9,9 +9,6 @@ class GroupAssert<T> implements Assert {
         this.group = group;
     }
 
-    /**
-     * aka Commutative Group
-     */
     public void assertIsCommutativeGroup() {
         assertIsGroup();
         assertCommutative();

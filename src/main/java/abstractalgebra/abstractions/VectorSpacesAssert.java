@@ -6,9 +6,9 @@ public class VectorSpacesAssert<S, V> implements Assert {
     private final VectorSpace<S, V> vectorSpace;
     private final Field<S> scalarField;
 
-    public VectorSpacesAssert(VectorSpace<S, V> vectorSpace, Field<S> scalarField) {
+    public VectorSpacesAssert(VectorSpace<S, V> vectorSpace) {
         this.vectorSpace = vectorSpace;
-        this.scalarField = scalarField;
+        this.scalarField = vectorSpace.getScalarField();
     }
 
     public void assertIsVectorSpace() {
@@ -20,7 +20,7 @@ public class VectorSpacesAssert<S, V> implements Assert {
     }
 
     private void assertVectorsFormCommutativeGroup() {
-        new GroupAssert<>(vectorSpace.toVectorAdditiveGroup()).assertIsCommutativeGroup();
+        new GroupAssert<>(vectorSpace.getVectorAdditiveGroup()).assertIsCommutativeGroup();
     }
     private void assertScalarMultiplicationIsCompatibleWithFieldMultiplication() {
         VectorElement<S, V> v = vectorSpace.random();
