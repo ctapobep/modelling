@@ -1,11 +1,8 @@
 package abstractalgebra.abstractions;
 
-import abstractalgebra.abstractions.Group;
-import abstractalgebra.abstractions.GroupElement;
-
 import static org.junit.Assert.assertEquals;
 
-public class InvertibilityAssert<T> {
+public class InvertibilityAssert<T> implements Assert {
     private final Group<T> group;
 
     public InvertibilityAssert(Group<T> group) {

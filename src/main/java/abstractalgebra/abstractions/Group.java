@@ -1,6 +1,6 @@
 package abstractalgebra.abstractions;
 
-public class Group<T> implements MagmaElement<T>, ValueGenerator<GroupElement<T>> {
+public class Group<T> implements ValueGenerator<GroupElement<T>> {
     private final MonotypicalGroupOp<T> add;
     private final ValueGenerator<T> valueGenerator;
 

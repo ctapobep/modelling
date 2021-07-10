@@ -1,4 +1,4 @@
 package abstractalgebra.abstractions;
 
-public interface MagmaElement<T> {
+public interface MagmaElement {
 }

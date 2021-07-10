@@ -1,6 +1,6 @@
 package abstractalgebra.abstractions;
 
-public class FieldAssert<T> {
+public class FieldAssert<T> implements Assert {
     private final Field<T> field;
 
     public FieldAssert(Field<T> field) {

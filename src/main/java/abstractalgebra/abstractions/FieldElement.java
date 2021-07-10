@@ -2,7 +2,7 @@ package abstractalgebra.abstractions;
 
 import java.util.Objects;
 
-public class FieldElement<T> implements MagmaElement<T>{
+public class FieldElement<T> implements MagmaElement {
     private final T value;
     private final MonotypicalGroupOp<T> add;
     private final MonotypicalGroupOp<T> multiply;

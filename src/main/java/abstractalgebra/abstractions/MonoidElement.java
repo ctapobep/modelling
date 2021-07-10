@@ -2,7 +2,7 @@ package abstractalgebra.abstractions;
 
 import java.util.Objects;
 
-public class MonoidElement<T> {
+public class MonoidElement<T> implements MagmaElement {
     protected final T value;
     protected final MonotypicalGroupOp<T> op;
 

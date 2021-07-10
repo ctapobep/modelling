@@ -2,7 +2,7 @@ package abstractalgebra.abstractions;
 
 import static org.junit.Assert.assertEquals;
 
-public class VectorSpacesAssert<S, V> {
+public class VectorSpacesAssert<S, V> implements Assert {
     private final VectorSpace<S, V> vectorSpace;
     private final Field<S> scalarField;
 

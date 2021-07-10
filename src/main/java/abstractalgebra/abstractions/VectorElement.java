@@ -2,7 +2,7 @@ package abstractalgebra.abstractions;
 
 import java.util.Objects;
 
-public class VectorElement<S, V> {
+public class VectorElement<S, V> implements MagmaElement {
     private final V value;
     private final MonotypicalGroupOp<V> vectorAddition;
     private final BitypicalGroupOp<FieldElement<S>, V> scalarMultiplication;
