@@ -1,6 +1,6 @@
 package abstractalgebra.abstractions;
 
-public class VectorSpace<S, V> implements ValueGenerator<VectorElement<S, V>> {
+public class VectorSpace<S, V> implements ValueGenerator<VectorElement<S, V>>, AlgebraicStructure {
     private final MonotypicalGroupOp<V> vectorAddition;
     private final BitypicalGroupOp<FieldElement<S>, V> scalarMultiplication;
     private final ValueGenerator<V> vectorGenerator;

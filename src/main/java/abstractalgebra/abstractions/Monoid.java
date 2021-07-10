@@ -1,6 +1,6 @@
 package abstractalgebra.abstractions;
 
-public class Monoid<T> implements ValueGenerator<MonoidElement<T>> {
+public class Monoid<T> implements ValueGenerator<MonoidElement<T>>, AlgebraicStructure {
     private final MonotypicalGroupOp<T> add;
     private final ValueGenerator<T> valueGenerator;
 

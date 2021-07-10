@@ -1,6 +1,6 @@
 package abstractalgebra.abstractions;
 
-public class Field<T> implements ValueGenerator<FieldElement<T>>{
+public class Field<T> implements ValueGenerator<FieldElement<T>>, AlgebraicStructure {
     private final MonotypicalGroupOp<T> add;
     private final MonotypicalGroupOp<T> multiply;
     private final ValueGenerator<T> valueGenerator;

@@ -1,6 +1,6 @@
 package abstractalgebra.abstractions;
 
-public class Ring<T> implements ValueGenerator<RingElement<T>> {
+public class Ring<T> implements ValueGenerator<RingElement<T>>, AlgebraicStructure {
     private final MonotypicalGroupOp<T> add;
     private final MonotypicalGroupOp<T> multiply;
     private final ValueGenerator<T> valueGenerator;
