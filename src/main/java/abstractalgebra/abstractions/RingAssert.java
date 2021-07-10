@@ -2,7 +2,7 @@ package abstractalgebra.abstractions;
 
 import static org.junit.Assert.assertEquals;
 
-public class RingAssert<T> implements Assert {
+class RingAssert<T> implements Assert {
     private final Ring<T> ring;
 
     public RingAssert(Ring<T> ring) {
