@@ -40,18 +40,6 @@ public class ColumnScalarMultiplication<T> implements BitypicalGroupOp<FieldElem
         return new FieldColumn<>(result);
     }
 
-    @Override public FieldElement<T> identity1() {
-        return null;
-    }
-    @Override public FieldElement<T> inverse1(FieldElement<T> a) {
-        return null;
-    }
-    @Override public FieldColumn<T> identity2() {
-        return null;
-    }
-    @Override public FieldColumn<T> inverse2(FieldColumn<T> a) {
-        return null;
-    }
     @SuppressWarnings("unchecked")
     private FieldElement<T>[] createEmptyArray(int dims) {
         return (FieldElement<T>[]) new FieldElement[dims];
