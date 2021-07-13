@@ -6,6 +6,9 @@ public class Real {
     public static final Real ZERO = new Real(BigDecimal.ZERO), ONE = new Real(BigDecimal.ONE);
     private final BigDecimal v;
 
+    public Real(double v) {
+        this(BigDecimal.valueOf(v));
+    }
     public Real(BigDecimal v) {
         this.v = v;
     }
