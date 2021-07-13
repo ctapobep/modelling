@@ -1,0 +1,16 @@
+package abstractalgebra.functions;
+
+import abstractalgebra.reals.Real;
+import abstractalgebra.reals.RealMultiplication;
+
+public class OneOver implements Function {
+    private final Function f;
+
+    public OneOver(Function f) {
+        this.f = f;
+    }
+
+    public Real get(Real x) {
+        return new RealMultiplication().inverse(f.get(x));
+    }
+}

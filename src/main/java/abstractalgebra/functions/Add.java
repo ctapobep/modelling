@@ -3,10 +3,10 @@ package abstractalgebra.functions;
 import abstractalgebra.reals.Real;
 import abstractalgebra.reals.RealAddition;
 
-public class Add implements Function<Real> {
-    private final Function<Real> right, left;
+public class Add implements Function {
+    private final Function right, left;
 
-    public Add(Function<Real> right, Function<Real> left) {
+    public Add(Function right, Function left) {
         this.right = right;
         this.left = left;
     }

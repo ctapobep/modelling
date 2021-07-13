@@ -15,7 +15,6 @@ public class ColumnScalarMultiplication<T> implements BitypicalGroupOp<FieldElem
         this.dims = dims;
     }
 
-
     public FieldColumn<T> identity() {
         FieldElement<T>[] r = createEmptyArray(dims);
         Arrays.fill(r, field.multiplicativeIdentity());
