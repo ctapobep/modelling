@@ -3,7 +3,7 @@ package abstractalgebra.functions;
 import abstractalgebra.reals.Real;
 import abstractalgebra.reals.RealMultiplication;
 
-public class MultiplyByScalar implements Function {
+public class MultiplyByScalar extends ComparableFunction {
     private final Real scalar;
     private final Function f;
 

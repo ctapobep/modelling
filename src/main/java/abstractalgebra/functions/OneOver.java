@@ -3,7 +3,7 @@ package abstractalgebra.functions;
 import abstractalgebra.reals.Real;
 import abstractalgebra.reals.RealMultiplication;
 
-public class OneOver implements Function {
+public class OneOver extends ComparableFunction {
     private final Function f;
 
     public OneOver(Function f) {

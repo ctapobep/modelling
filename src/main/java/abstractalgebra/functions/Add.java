@@ -3,7 +3,7 @@ package abstractalgebra.functions;
 import abstractalgebra.reals.Real;
 import abstractalgebra.reals.RealAddition;
 
-public class Add implements Function {
+public class Add extends ComparableFunction {
     private final Function right, left;
 
     public Add(Function right, Function left) {

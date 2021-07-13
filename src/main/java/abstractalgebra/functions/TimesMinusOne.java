@@ -4,7 +4,7 @@ import abstractalgebra.reals.Real;
 
 import java.math.BigDecimal;
 
-public class TimesMinusOne implements Function {
+public class TimesMinusOne extends ComparableFunction {
     private static final BigDecimal MINUS_ONE = BigDecimal.valueOf(-1);
     private final Function wrapped;
 
