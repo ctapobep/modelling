@@ -15,9 +15,16 @@ public class ColumnGenerator<T> implements ValueGenerator<FieldColumn<T>> {
     }
 
     @Override public FieldColumn<T> random() {
+        @SuppressWarnings("unchecked")
         FieldElement<T>[] reals = new FieldElement[dims];
         for (int i = 0; i < reals.length; i++)
             reals[i] = field.random();
+        return new FieldColumn<>(reals);
+    }
+    public FieldColumn<T> zero() {
+        FieldElement<T>[] reals = new FieldElement[dims];
+        for (int i = 0; i < reals.length; i++)
+            reals[i] = field.additiveIdentity();
         return new FieldColumn<>(reals);
     }
     public int dims() {
