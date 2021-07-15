@@ -1,36 +1,44 @@
 package abstractalgebra.abstractions;
 
-import java.util.Objects;
+import abstractalgebra.reals.Real;
 
-public class VectorElement<S, V> implements MagmaElement {
+public class VectorElement<S extends Real, V> implements MagmaElement {
     private final V value;
     private final MonotypicalGroupOp<V> vectorAddition;
     private final BitypicalGroupOp<FieldElement<S>, V> scalarMultiplication;
+    private final InnerProduct<S, V> innerProduct;
 
-    public VectorElement(V value,
-                         MonotypicalGroupOp<V> vectorAddition,
-                         BitypicalGroupOp<FieldElement<S>, V> scalarMultiplication) {
+    public VectorElement(V value, MonotypicalGroupOp<V> vectorAddition,
+                         BitypicalGroupOp<FieldElement<S>, V> scalarMultiplication, InnerProduct<S, V> innerProduct) {
         this.value = value;
         this.vectorAddition = vectorAddition;
         this.scalarMultiplication = scalarMultiplication;
+        this.innerProduct = innerProduct;
     }
 
     public VectorElement<S, V> add(VectorElement<S, V> v) {
-        return new VectorElement<>(vectorAddition.calc(this.value, v.value), vectorAddition, scalarMultiplication);
+        return createAnother(vectorAddition.calc(this.value, v.value));
     }
     public VectorElement<S, V> multiply(FieldElement<S> scalar) {
-        return new VectorElement<>(scalarMultiplication.calcRight(this.value, scalar), vectorAddition, scalarMultiplication);
+        return createAnother(scalarMultiplication.calcRight(this.value, scalar));
+    }
+    public FieldElement<S> innerProduct(VectorElement<S, V> v) {
+        return innerProduct.calc(value, v.value);
     }
 
-    @Override public boolean equals(Object o) {
+    public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         VectorElement<?, ?> that = (VectorElement<?, ?>) o;
-        return Objects.equals(value, that.value)
-               && Objects.equals(vectorAddition, that.vectorAddition)
-               && Objects.equals(scalarMultiplication, that.scalarMultiplication);
+        return value.equals(that.value)
+               && vectorAddition.equals(that.vectorAddition)
+               && scalarMultiplication.equals(that.scalarMultiplication)
+               && innerProduct.equals(that.innerProduct);
     }
-    @Override public String toString() {
+    public String toString() {
         return value.toString();
+    }
+    private VectorElement<S, V> createAnother(V v) {
+        return new VectorElement<>(v, vectorAddition, scalarMultiplication, innerProduct);
     }
 }

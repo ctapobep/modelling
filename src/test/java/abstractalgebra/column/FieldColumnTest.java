@@ -14,6 +14,6 @@ public class FieldColumnTest {
 
         MonotypicalGroupOp<FieldColumn<Real>> vectorAddition = new ColumnAddition<>(realField, generator.dims());
         ColumnScalarMultiplication<Real> scalarMultiplication = new ColumnScalarMultiplication<>(realField, generator.dims());
-        new VectorSpace<>(vectorAddition, scalarMultiplication, generator, realField);
+        new VectorSpace<>(vectorAddition, scalarMultiplication, new DotProduct(realField), generator, realField);
     }
 }

@@ -1,8 +1,10 @@
 package abstractalgebra.abstractions;
 
+import abstractalgebra.reals.Real;
+
 import static org.junit.Assert.assertEquals;
 
-public class VectorSpacesAssert<S, V> implements Assert {
+public class VectorSpacesAssert<S extends Real, V> implements Assert {
     private final VectorSpace<S, V> vectorSpace;
     private final Field<S> scalarField;
 
