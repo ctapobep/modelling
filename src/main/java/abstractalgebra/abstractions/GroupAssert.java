@@ -2,7 +2,7 @@ package abstractalgebra.abstractions;
 
 import static org.junit.Assert.assertEquals;
 
-class GroupAssert<T> implements Assert {
+public class GroupAssert<T> implements Assert {
     private final Group<T> group;
 
     public GroupAssert(Group<T> group) {
