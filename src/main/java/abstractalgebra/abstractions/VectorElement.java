@@ -2,7 +2,7 @@ package abstractalgebra.abstractions;
 
 import abstractalgebra.reals.Real;
 
-public class VectorElement<S extends Real, V> implements MagmaElement {
+public class VectorElement<S extends Real, V> implements MagmaElement, InnerProductVector<S, V> {
     private final V value;
     private final MonotypicalGroupOp<V> vectorAddition;
     private final BitypicalGroupOp<FieldElement<S>, V> scalarMultiplication;

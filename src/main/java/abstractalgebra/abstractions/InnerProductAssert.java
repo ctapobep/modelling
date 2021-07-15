@@ -5,7 +5,7 @@ import abstractalgebra.reals.Real;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-public class InnerProductAssert<S extends Real, V> {
+class InnerProductAssert<S extends Real, V> {
     private final VectorSpace<S, V> vectorSpace;
     private final Field<S> scalarField;
 
