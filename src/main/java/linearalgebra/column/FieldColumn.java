@@ -7,9 +7,13 @@ import java.util.Arrays;
 public class FieldColumn<T> {
     private final FieldElement<T>[] elements;
 
-    public FieldColumn(FieldElement<T>[] elements) {
+    @SafeVarargs
+    public FieldColumn(FieldElement<T> ... elements) {
         this.elements = elements;
     }
+//    public FieldColumn(FieldElement<T>[] elements) {
+//        this.elements = elements;
+//    }
 
     public FieldElement<T> get(int i) {
         return elements[i];
