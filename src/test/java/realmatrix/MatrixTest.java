@@ -44,4 +44,15 @@ public class MatrixTest {
                 { 3. / 10, -2. / 5}});
         assertEquals(identity, m1.times(inverse));
     }
+    @Test public void canSwapRows() {
+        Matrix m1 = Matrix.fromRows(new double[][]{
+                {20, 10},
+                {10, 10},
+                {15, 5}});
+        Matrix expected = Matrix.fromRows(new double[][]{
+                {15, 5},
+                {10, 10},
+                {20, 10}});
+        assertEquals(expected, m1.swap(0, 2));
+    }
 }

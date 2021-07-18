@@ -25,6 +25,9 @@ public class Matrix {
     public static Matrix fromColumns(Vector... columns) {
         return new Matrix(columns);
     }
+    public static Matrix fromRows(Vector... rows) {
+        return new Matrix(rows).transpose();
+    }
     public static Matrix fromRows(double[][] entries) {
         return new Matrix(entries).transpose();
     }
@@ -71,6 +74,14 @@ public class Matrix {
         for(int i = 0; i < width; i++)
             row[i] = columns[i].get(rowIdx);
         return new Vector(row);
+    }
+    public Matrix swap(int row1, int row2) {
+        Vector[] rows = new Vector[this.height];
+        for (int r = 0; r < height; r++)
+            rows[r] = getRow(r);
+        rows[row1] = getRow(row2);
+        rows[row2] = getRow(row1);
+        return Matrix.fromRows(rows);
     }
     public Vector getColumn(int colIdx) {
         return columns[colIdx];
