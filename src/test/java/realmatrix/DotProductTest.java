@@ -34,6 +34,6 @@ public class DotProductTest {
         Vector v1 = Vector.random(),
                v2 = Vector.random(v1.dims());
         BigDecimal scalar = BigDecimal.valueOf(RandomShortApi.Double(-1000, 1000));
-        assertDecimalEquals(v1.dot(v2).multiply(scalar), v1.multiply(scalar).dot(v2));
+        assertDecimalEquals(v1.dot(v2).multiply(scalar), v1.times(scalar).dot(v2));
     }
 }

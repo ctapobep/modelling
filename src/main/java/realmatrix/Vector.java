@@ -26,10 +26,10 @@ public class Vector {
             result[i] = get(i).add(v.get(i));
         return new Vector(result);
     }
-    public Vector multiply(double scalar) {
-        return multiply(BigDecimal.valueOf(scalar));
+    public Vector times(double scalar) {
+        return times(BigDecimal.valueOf(scalar));
     }
-    public Vector multiply(BigDecimal scalar) {
+    public Vector times(BigDecimal scalar) {
         BigDecimal[] result = new BigDecimal[entries.length];
         for(int i = 0; i < entries.length; i++)
             result[i] = entries[i].multiply(scalar);
@@ -37,9 +37,6 @@ public class Vector {
     }
     public BigDecimal get(int n) {
         return entries[n];
-    }
-    public double getDouble(int n) {
-        return entries[n].doubleValue();
     }
 
     public BigDecimal dot(Vector that) {
@@ -78,10 +75,9 @@ public class Vector {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Vector vector = (Vector) o;
-        for (int i = 0; i < entries.length; i++) {
+        for (int i = 0; i < entries.length; i++)
             if(get(i).compareTo(vector.get(i)) != 0)
                 return false;
-        }
         return true;
     }
     public String toString() {

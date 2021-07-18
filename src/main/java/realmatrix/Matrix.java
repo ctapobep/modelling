@@ -36,13 +36,13 @@ public class Matrix {
             result[i][i] = 1;
         return Matrix.fromColumns(result);
     }
-    public Matrix multiply(double scalar) {
+    public Matrix times(double scalar) {
         Vector[] newColumns = new Vector[columns.length];
         for(int col = 0; col < width; col++)
-            newColumns[col] = columns[col].multiply(scalar);
+            newColumns[col] = columns[col].times(scalar);
         return new Matrix(newColumns);
     }
-    public Vector multiply(Vector v) {
+    public Vector times(Vector v) {
         if(this.width != v.dims())
             throw new IllegalArgumentException("Dimensions don't match: " +
                     "this.columns="+this.width + ", but vector size="+ v.dims());
@@ -51,13 +51,13 @@ public class Matrix {
             result[i] = getRow(i).dot(v);
         return new Vector(result);
     }
-    public Matrix multiply(Matrix rightMatrix) {
+    public Matrix times(Matrix rightMatrix) {
         if(this.width != rightMatrix.height)
             throw new IllegalArgumentException("Dimensions don't match: " +
                     "this.columns="+this+ ", but rightMatrix.height="+rightMatrix);
         Vector[] result = new Vector[rightMatrix.width];
         for(int col = 0; col < rightMatrix.width; col++)
-            result[col] = multiply(rightMatrix.getColumn(col));
+            result[col] = times(rightMatrix.getColumn(col));
         return Matrix.fromColumns(result);
     }
     public Matrix transpose() {
@@ -67,15 +67,16 @@ public class Matrix {
         return Matrix.fromColumns(rows);
     }
     public Vector getRow(int rowIdx) {
-        double [] row = new double[width];
-        for(int i = 0; i < width; i++) row[i] = columns[i].getDouble(rowIdx);
+        BigDecimal [] row = new BigDecimal[width];
+        for(int i = 0; i < width; i++)
+            row[i] = columns[i].get(rowIdx);
         return new Vector(row);
     }
     public Vector getColumn(int colIdx) {
         return columns[colIdx];
     }
-    public double get(int col, int row) {
-        return columns[col].getDouble(row);
+    public BigDecimal get(int col, int row) {
+        return columns[col].get(row);
     }
 
     public boolean equals(Object o) {
@@ -88,7 +89,8 @@ public class Matrix {
     public String toString() {
         StringBuilder result = new StringBuilder("Matrix ").append(height).append('x').append(width).append(":\n");
         for(int i = 0; i < height; i++) {
-            for (Vector v : columns) result.append(' ').append(v.getDouble(i)).append(",\t");
+            for (Vector v : columns)
+                result.append(' ').append(String.format("%5s", v.get(i))).append("\t");
             result.append('\n');
         }
         return result.toString();
