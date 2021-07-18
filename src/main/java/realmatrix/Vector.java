@@ -1,7 +1,13 @@
 package realmatrix;
 
+import io.qala.datagen.RandomShortApi;
+
 import java.math.BigDecimal;
+import java.math.MathContext;
 import java.util.Arrays;
+
+import static io.qala.datagen.RandomShortApi.integer;
+import static io.qala.datagen.RandomShortApi.sample;
 
 public class Vector {
     private final BigDecimal[] entries;
@@ -14,10 +20,19 @@ public class Vector {
     public Vector(BigDecimal[] entries) {
         this.entries = entries;
     }
+    public Vector add(Vector v) {
+        BigDecimal[] result = new BigDecimal[dims()];
+        for(int i = 0; i < entries.length; i++)
+            result[i] = get(i).add(v.get(i));
+        return new Vector(result);
+    }
     public Vector multiply(double scalar) {
+        return multiply(BigDecimal.valueOf(scalar));
+    }
+    public Vector multiply(BigDecimal scalar) {
         BigDecimal[] result = new BigDecimal[entries.length];
         for(int i = 0; i < entries.length; i++)
-            result[i] = entries[i].multiply(BigDecimal.valueOf(scalar));
+            result[i] = entries[i].multiply(scalar);
         return new Vector(result);
     }
     public BigDecimal get(int n) {
@@ -27,12 +42,36 @@ public class Vector {
         return entries[n].doubleValue();
     }
 
-    public double dot(Vector that) {
-        if(this.size() != that.size())
-            throw new IllegalArgumentException("Sizes didn't match: " + this.size() + " and " + that.size());
-        double result = 0;
-        for(int i = 0; i < size(); i++) result += this.getDouble(i) * that.getDouble(i);
+    public BigDecimal dot(Vector that) {
+        if(this.dims() != that.dims())
+            throw new IllegalArgumentException("Sizes didn't match: " + this.dims() + " and " + that.dims());
+        BigDecimal result = BigDecimal.ZERO;
+        for(int i = 0; i < dims(); i++)
+            result = result.add(get(i).multiply(that.get(i)));
         return result;
+    }
+    public BigDecimal norm() {
+        return this.dot(this).sqrt(MathContext.DECIMAL128);
+    }
+    public int dims() {
+        return entries.length;
+    }
+    public boolean isZero() {
+        return repeat(BigDecimal.ZERO, dims()).equals(this);
+    }
+    public static Vector repeat(BigDecimal value, int n) {
+        BigDecimal[] vector = new BigDecimal[n];
+        Arrays.fill(vector, value);
+        return new Vector(vector);
+    }
+    public static Vector random() {
+        return random(integer(1, 100));
+    }
+    public static Vector random(int dims) {
+        BigDecimal[] result = new BigDecimal[dims];
+        for (int i = 0; i < dims; i++)
+            result[i] = BigDecimal.valueOf(sample(0., 1., RandomShortApi.Double(-1000, 1000)));
+        return new Vector(result);
     }
 
     public boolean equals(Object o) {
@@ -47,9 +86,5 @@ public class Vector {
     }
     public String toString() {
         return Arrays.toString(entries);
-    }
-
-    public int size() {
-        return entries.length;
     }
 }

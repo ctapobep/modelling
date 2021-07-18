@@ -17,7 +17,7 @@ public class Matrix {
     private Matrix(Vector[] columns) {
         this.columns = columns;
         this.width = columns.length;
-        this.height = columns[0].size();
+        this.height = columns[0].dims();
     }
     public static Matrix fromColumns(double[][] entries) {
         return new Matrix(entries);
@@ -43,10 +43,10 @@ public class Matrix {
         return new Matrix(newColumns);
     }
     public Vector multiply(Vector v) {
-        if(this.width != v.size())
+        if(this.width != v.dims())
             throw new IllegalArgumentException("Dimensions don't match: " +
-                    "this.columns="+this.width + ", but vector size="+ v.size());
-        double[] result = new double[height];
+                    "this.columns="+this.width + ", but vector size="+ v.dims());
+        BigDecimal[] result = new BigDecimal[height];
         for(int i = 0; i < height; i++)
             result[i] = getRow(i).dot(v);
         return new Vector(result);
@@ -62,7 +62,8 @@ public class Matrix {
     }
     public Matrix transpose() {
         Vector[] rows = new Vector[this.height];
-        for (int i = 0; i < this.height; i++) rows[i] = getRow(i);
+        for (int i = 0; i < this.height; i++)
+            rows[i] = getRow(i);
         return Matrix.fromColumns(rows);
     }
     public Vector getRow(int rowIdx) {
