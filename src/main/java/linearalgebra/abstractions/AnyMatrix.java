@@ -4,6 +4,7 @@ import abstractalgebra.abstractions.Field;
 import abstractalgebra.abstractions.FieldElement;
 import abstractalgebra.reals.Real;
 import abstractalgebra.reals.RealField;
+import linearalgebra.column.ColumnAddition;
 import linearalgebra.column.FieldColumn;
 
 import java.util.ArrayList;
@@ -21,11 +22,25 @@ public class AnyMatrix<F extends Real> implements Matrix<F> {
 
     public static AnyMatrix<Real> rows(double[][] cols) {
         Field<Real> reals = RealField.create();
+        //noinspection unchecked
         FieldElement<Real> [][]newCols = new FieldElement[cols.length][cols[0].length];
         for (int r = 0; r < cols.length; r++)
             for (int c = 0; c < cols[r].length; c++)
                 newCols[c][r] = reals.create(new Real(cols[c][r]));
         return matrixFromCols(newCols);
+    }
+//
+//    public AnyMatrix<F> add(int rowIdxToAddTo, int rowIdxToAdd, double coeff) {
+////        List<FieldColumn<F>> rows = asRows();
+////        ColumnAddition<F> add = new ColumnAddition<F>();
+////        rows.set(rowIdxToAddTo, add.calc(row(rowIdxToAddTo), row(rowIdxToAdd)))
+//    }
+    private List<FieldColumn<F>> asRows() {
+        List<FieldColumn<F>> newRows = new ArrayList<>();
+        for (int r = 0; r < dims.rows(); r++) {
+            newRows.add(row(r));
+        }
+        return newRows;
     }
 
     public AnyMatrix<F> t() {
