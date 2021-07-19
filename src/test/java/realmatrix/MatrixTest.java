@@ -55,4 +55,15 @@ public class MatrixTest {
                 {20, 10}});
         assertEquals(expected, m1.swap(0, 2));
     }
+    @Test public void canAddRows() {
+        Matrix m1 = Matrix.fromRows(new double[][]{
+                {20, 10},
+                {10, 10},
+                {15, 5}});
+        Matrix expected = Matrix.fromRows(new double[][]{
+                {20, 10},
+                { 0, 5},
+                {15, 5}});
+        assertEquals(expected, m1.addRow(1, 0, -.5));
+    }
 }

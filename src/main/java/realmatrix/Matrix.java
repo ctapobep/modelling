@@ -64,9 +64,7 @@ public class Matrix {
         return Matrix.fromColumns(result);
     }
     public Matrix transpose() {
-        Vector[] rows = new Vector[this.height];
-        for (int i = 0; i < this.height; i++)
-            rows[i] = getRow(i);
+        Vector[] rows = getRows();
         return Matrix.fromColumns(rows);
     }
     public Vector getRow(int rowIdx) {
@@ -76,18 +74,28 @@ public class Matrix {
         return new Vector(row);
     }
     public Matrix swap(int row1, int row2) {
-        Vector[] rows = new Vector[this.height];
-        for (int r = 0; r < height; r++)
-            rows[r] = getRow(r);
+        Vector[] rows = getRows();
         rows[row1] = getRow(row2);
         rows[row2] = getRow(row1);
         return Matrix.fromRows(rows);
+    }
+
+    public Matrix addRow(int rowToChange, int rowToAdd, double coeffToMultiply2ndRow) {
+        Vector[] rows = getRows();
+        rows[rowToChange] = rows[rowToChange].add(rows[rowToAdd].times(coeffToMultiply2ndRow));
+        return fromRows(rows);
     }
     public Vector getColumn(int colIdx) {
         return columns[colIdx];
     }
     public BigDecimal get(int col, int row) {
         return columns[col].get(row);
+    }
+    private Vector[] getRows() {
+        Vector[] rows = new Vector[this.height];
+        for (int r = 0; r < height; r++)
+            rows[r] = getRow(r);
+        return rows;
     }
 
     public boolean equals(Object o) {
