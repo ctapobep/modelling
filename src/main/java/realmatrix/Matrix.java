@@ -1,6 +1,7 @@
 package realmatrix;
 
 import java.math.BigDecimal;
+import java.math.MathContext;
 import java.util.Arrays;
 
 public class Matrix {
@@ -91,6 +92,11 @@ public class Matrix {
     public BigDecimal get(int col, int row) {
         return columns[col].get(row);
     }
+
+    public Matrix rref() {
+        return new GaussianElimination(getRows()).rref();
+    }
+
     private Vector[] getRows() {
         Vector[] rows = new Vector[this.height];
         for (int r = 0; r < height; r++)
@@ -114,4 +120,5 @@ public class Matrix {
         }
         return result.toString();
     }
+
 }

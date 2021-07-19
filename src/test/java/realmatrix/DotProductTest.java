@@ -7,8 +7,30 @@ import java.math.BigDecimal;
 
 import static org.junit.Assert.assertTrue;
 import static realmatrix.BigDecimalAssert.assertDecimalEquals;
+import static realmatrix.BigDecimalAssert.isEquals;
 
 public class DotProductTest {
+    @Test public void triangleInequality() {
+        Vector a = Vector.random(),
+               b = Vector.random(a.dims());
+        assertTrue(// ‖a + b‖ ≤ ‖a‖ + ‖b‖
+                a.add(b).norm().compareTo(
+                        a.norm().add(b.norm())) < 1);
+    }
+    @Test public void schwarzInequality() {
+        Vector a = Vector.random(),
+               b = Vector.random(a.dims());
+        BigDecimal ab = a.dot(b).abs();
+        BigDecimal abnorms = a.norm().multiply(b.norm());
+        assertTrue(// |a · b| ≤ ‖a‖ ‖b‖
+                ab.compareTo(abnorms) < 0 || isEquals(ab, abnorms));
+    }
+    @Test public void unitVectorHasLengthOf1() {
+        Vector v = Vector.randomNonZero();
+        assertTrue(BigDecimal.ONE.subtract(v.toUnitVector().norm()).abs().doubleValue() < 1e-30);
+        assertDecimalEquals(BigDecimal.ONE, v.toUnitVector().norm());
+    }
+
     @Test public void normIsPositiveDefiniteForNonZeroVectors() {
         Vector v = Vector.random();
         if(v.isZero())

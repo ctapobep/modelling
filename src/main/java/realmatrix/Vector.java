@@ -35,6 +35,12 @@ public class Vector {
             result[i] = entries[i].multiply(scalar);
         return new Vector(result);
     }
+    public Vector divide(BigDecimal scalar) {
+        BigDecimal[] result = new BigDecimal[dims()];
+        for(int i = 0; i < dims(); i++)
+            result[i] = get(i).divide(scalar, MathContext.DECIMAL128);
+        return new Vector(result);
+    }
     public BigDecimal get(int n) {
         return entries[n];
     }
@@ -50,6 +56,9 @@ public class Vector {
     public BigDecimal norm() {
         return this.dot(this).sqrt(MathContext.DECIMAL128);
     }
+    public Vector toUnitVector() {
+        return divide(norm());
+    }
     public int dims() {
         return entries.length;
     }
@@ -60,6 +69,14 @@ public class Vector {
         BigDecimal[] vector = new BigDecimal[n];
         Arrays.fill(vector, value);
         return new Vector(vector);
+    }
+
+    public static Vector randomNonZero() {
+        Vector v;
+        do {
+            v = random();
+        } while(v.isZero());
+        return v;
     }
     public static Vector random() {
         return random(integer(1, 100));
