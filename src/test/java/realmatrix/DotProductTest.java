@@ -1,15 +1,22 @@
 package realmatrix;
 
-import io.qala.datagen.RandomShortApi;
 import org.junit.Test;
 
 import java.math.BigDecimal;
 
+import static io.qala.datagen.RandomShortApi.Double;
 import static org.junit.Assert.assertTrue;
 import static realmatrix.BigDecimalAssert.assertDecimalEquals;
 import static realmatrix.BigDecimalAssert.isEquals;
 
 public class DotProductTest {
+    @Test public void sumOfVectorsOfSameLength_isPerpendicularToDifference() {
+        Vector a = Vector.random(2);
+        Vector rotated = Matrices.rotation(Double(-1, 1)).times(a);
+        Vector sum = a.add(rotated);
+        Vector difference = a.add(rotated.times(-1));
+        assertDecimalEquals(BigDecimal.ZERO, sum.dot(difference));
+    }
     @Test public void triangleInequality() {
         Vector a = Vector.random(),
                b = Vector.random(a.dims());
@@ -55,7 +62,7 @@ public class DotProductTest {
     @Test public void firstArgumentScalingIsLinear() {
         Vector v1 = Vector.random(),
                v2 = Vector.random(v1.dims());
-        BigDecimal scalar = BigDecimal.valueOf(RandomShortApi.Double(-1000, 1000));
+        BigDecimal scalar = BigDecimal.valueOf(Double(-1000, 1000));
         assertDecimalEquals(v1.dot(v2).multiply(scalar), v1.times(scalar).dot(v2));
     }
 }

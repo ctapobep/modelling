@@ -18,7 +18,7 @@ public class BigDecimalAssert {
     }
 
     public static boolean isEquals(BigDecimal expected, BigDecimal actual) {
-        return actual.subtract(expected).abs().doubleValue() < 1e-20;
+        return actual.subtract(expected).abs().doubleValue() < 1e-10;
     }
     public static boolean isEqualsPrecisely(BigDecimal expected, BigDecimal actual) {
         return actual.compareTo(expected) == 0;
