@@ -71,12 +71,15 @@ public class Vector {
         return new Vector(vector);
     }
 
-    public static Vector randomNonZero() {
+    public static Vector randomNonZero(int dims) {
         Vector v;
         do {
-            v = random();
+            v = random(dims);
         } while(v.isZero());
         return v;
+    }
+    public static Vector randomNonZero() {
+        return randomNonZero(integer(1, 100));
     }
     public static Vector random() {
         return random(integer(1, 100));
@@ -84,8 +87,12 @@ public class Vector {
     public static Vector random(int dims) {
         BigDecimal[] result = new BigDecimal[dims];
         for (int i = 0; i < dims; i++)
-            result[i] = BigDecimal.valueOf(sample(0., 1., RandomShortApi.Double(-1000, 1000)));
+            result[i] = BigDecimal.valueOf(sample(RandomShortApi.Double(-1000, 1000)));
         return new Vector(result);
+    }
+    public static Vector randomUnitVector(int dims) {
+        Vector v = randomNonZero(dims);
+        return v.divide(v.norm());
     }
 
     public boolean equals(Object o) {
