@@ -3,6 +3,7 @@ package realmatrix;
 import org.junit.Test;
 
 import java.math.BigDecimal;
+import java.math.MathContext;
 
 import static io.qala.datagen.RandomShortApi.Double;
 import static org.junit.Assert.assertTrue;
@@ -10,6 +11,15 @@ import static realmatrix.BigDecimalAssert.assertDecimalEquals;
 import static realmatrix.BigDecimalAssert.isEquals;
 
 public class DotProductTest {
+
+    @Test public void avDot() {
+        Vector a = Vector.randomUnitVector(2);
+        BigDecimal sum = BigDecimal.ZERO;
+        for (int i = 0; i < 5000; i++)
+            sum = sum.add(a.dot(Vector.randomUnitVector(2)).abs());
+        System.out.println(sum.divide(BigDecimal.valueOf(5000), MathContext.DECIMAL128));
+    }
+
     @Test public void sumOfVectorsOfSameLength_isPerpendicularToDifference() {
         Vector a = Vector.random(2);
         Vector rotated = Matrices.rotation(Double(-1, 1)).times(a);
