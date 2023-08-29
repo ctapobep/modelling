@@ -15,6 +15,9 @@ public class Reals implements Set<Real> {
         this(new Real(-1000), new Real(1000));
     }
 
+    public Reals(double min, double max) {
+        this(new Real(min), new Real(max));
+    }
     public Reals(Real min, Real max) {
         this(min, max, new HashSet<>());
     }

@@ -27,7 +27,7 @@ public class Real {
     }
 
     public boolean isClose(Real that) {
-        return Math.abs(v.doubleValue() - that.v.doubleValue()) < 1e-20;
+        return Math.abs(v.doubleValue() - that.v.doubleValue()) < 1e-15;
     }
 
     public boolean equals(Object o) {
