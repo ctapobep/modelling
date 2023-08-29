@@ -9,7 +9,7 @@ import static org.junit.Assert.assertTrue;
 public class SinTest {
     @Test
     public void acceptAnyReal_andProducesOnlyValuesWithinRangeOf1AndMinus1() {
-        Sin sin = new Sin();
+        SingleValuedFunction<Real, Real> sin = f();
         Set<Real> domain = new Reals();
 
         Real result = sin.apply(domain.random());
@@ -19,12 +19,16 @@ public class SinTest {
 
     @Test
     public void examples() {
-        Sin sin = new Sin();
+        SingleValuedFunction<Real, Real> sin = f();
         sin.apply(new Real(0)).assertIsClose(Real.ZERO);
         sin.apply(Real.PI).assertIsClose(Real.ZERO);
         sin.apply(new Real(2*Math.PI)).assertIsClose(Real.ZERO);
 
         sin.apply(new Real(Math.PI/2)).assertIsClose(Real.ONE);
         sin.apply(new Real(Math.PI*3/2)).assertIsClose(new Real(-1));
+    }
+
+    private static SingleValuedFunction<Real, Real> f() {
+        return Functions.sin();
     }
 }

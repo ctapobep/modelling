@@ -29,6 +29,6 @@ public class CosTest {
     }
 
     private static SingleValuedFunction<Real, Real> f() {
-        return new Cos();
+        return Functions.cos();
     }
 }

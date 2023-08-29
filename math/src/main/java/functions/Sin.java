@@ -8,11 +8,7 @@ public class Sin implements SingleValuedFunction<Real, Real> {
     private static final Set<Real> RANGE = new Reals(new Real(-1), Real.ONE);
 
     public Real apply(Real arg) {
-        if(!domain().contains(arg))
-            throw new IllegalArgumentException(arg + " isn't in the domain!");
-        Real result = new Real(Math.sin(arg.asDouble()));
-        assert range().contains(result);
-        return result;
+        return new Real(Math.sin(arg.asDouble()));
     }
 
     public Set<Real> domain() {
