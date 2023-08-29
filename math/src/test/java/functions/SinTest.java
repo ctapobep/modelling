@@ -20,11 +20,11 @@ public class SinTest {
     @Test
     public void examples() {
         Sin sin = new Sin();
-        assertTrue(sin.apply(new Real(0)).isClose(Real.ZERO));
-        assertTrue(sin.apply(Real.PI).isClose(Real.ZERO));
-        assertTrue(sin.apply(new Real(2*Math.PI)).isClose(Real.ZERO));
+        sin.apply(new Real(0)).assertIsClose(Real.ZERO);
+        sin.apply(Real.PI).assertIsClose(Real.ZERO);
+        sin.apply(new Real(2*Math.PI)).assertIsClose(Real.ZERO);
 
-        assertTrue(sin.apply(new Real(Math.PI/2)).isClose(Real.ONE));
-        assertTrue(sin.apply(new Real(Math.PI*3/2)).isClose(new Real(-1)));
+        sin.apply(new Real(Math.PI/2)).assertIsClose(Real.ONE);
+        sin.apply(new Real(Math.PI*3/2)).assertIsClose(new Real(-1));
     }
 }

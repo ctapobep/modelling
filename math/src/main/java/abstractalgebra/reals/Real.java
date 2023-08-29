@@ -26,8 +26,9 @@ public class Real {
         return v.doubleValue();
     }
 
-    public boolean isClose(Real that) {
-        return Math.abs(v.doubleValue() - that.v.doubleValue()) < 1e-15;
+    public void assertIsClose(Real that) {
+        if(Math.abs(v.doubleValue() - that.v.doubleValue()) > 1e-15)
+            throw new AssertionError(this + " isn't close to " + that);
     }
 
     public boolean equals(Object o) {
