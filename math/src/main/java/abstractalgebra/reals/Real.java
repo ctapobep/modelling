@@ -1,6 +1,7 @@
 package abstractalgebra.reals;
 
 import java.math.BigDecimal;
+import java.math.MathContext;
 import java.util.Map;
 import java.util.Objects;
 
@@ -10,7 +11,12 @@ public class Real {
             1D, BigDecimal.ONE,
             10D, BigDecimal.TEN
     );
-    public static final Real ZERO = new Real(BigDecimal.ZERO), ONE = new Real(BigDecimal.ONE), PI = new Real(Math.PI);
+    public static final Real
+            ZERO = new Real(BigDecimal.ZERO),
+            ONE = new Real(BigDecimal.ONE),
+            MINUS_ONE = new Real(new BigDecimal(-1)),
+            PI = new Real(Math.PI),
+            INF = new Real(new BigDecimal(Double.MAX_VALUE));
     private final BigDecimal v;
 
     public Real(double v) {
@@ -27,7 +33,7 @@ public class Real {
     }
 
     public void assertIsClose(Real that) {
-        if(Math.abs(v.doubleValue() - that.v.doubleValue()) > 1e-15)
+        if(this.v.subtract(that.v).abs().compareTo(new BigDecimal("0.0000000001")) >= 0)
             throw new AssertionError(this + " isn't close to " + that);
     }
 

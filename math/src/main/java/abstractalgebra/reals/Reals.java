@@ -10,6 +10,7 @@ import static io.qala.datagen.RandomShortApi.Double;
 public class Reals implements Set<Real> {
     private final Real min, max;
     private final HashSet<Real> excluded = new HashSet<>();
+    public static final Set<Real> NON_NEGATIVE = new Reals(Real.ZERO, Real.INF);
 
     public Reals() {
         this(new Real(-1000), new Real(1000));
