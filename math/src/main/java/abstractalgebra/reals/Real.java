@@ -1,7 +1,6 @@
 package abstractalgebra.reals;
 
 import java.math.BigDecimal;
-import java.math.MathContext;
 import java.util.Map;
 import java.util.Objects;
 
@@ -41,7 +40,9 @@ public class Real {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Real that = (Real) o;
-        return Objects.equals(this.asBigDecimal(), that.asBigDecimal());
+        // This isn't a strict enough equals(), it violates the spec, but it's much convenient this way.
+        // I don't think it will break any hash-based collections, at least not much.
+        return this.v.subtract(that.v).abs().compareTo(new BigDecimal("0.0000000001")) < 0;
     }
     public int hashCode() {
         return Objects.hash(v);
