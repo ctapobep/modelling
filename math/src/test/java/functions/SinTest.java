@@ -4,6 +4,7 @@ import abstractalgebra.reals.Real;
 import abstractalgebra.reals.Reals;
 import org.junit.Test;
 
+import static functions.Asserts.assertClose;
 import static org.junit.Assert.assertTrue;
 
 public class SinTest {
@@ -20,12 +21,12 @@ public class SinTest {
     @Test
     public void examples() {
         SingleValuedFunction<Real, Real> sin = f();
-        sin.apply(new Real(0)).assertIsClose(Real.ZERO);
-        sin.apply(Real.PI).assertIsClose(Real.ZERO);
-        sin.apply(new Real(2*Math.PI)).assertIsClose(Real.ZERO);
+        assertClose(sin.apply(new Real(0)), Real.ZERO);
+        assertClose(sin.apply(Real.PI), Real.ZERO);
+        assertClose(sin.apply(new Real(2 * Math.PI)), Real.ZERO);
 
-        sin.apply(new Real(Math.PI/2)).assertIsClose(Real.ONE);
-        sin.apply(new Real(Math.PI*3/2)).assertIsClose(new Real(-1));
+        assertClose(sin.apply(new Real(Math.PI / 2)), Real.ONE);
+        assertClose(sin.apply(new Real(Math.PI * 3 / 2)), Real.MINUS_ONE);
     }
 
     private static SingleValuedFunction<Real, Real> f() {

@@ -31,11 +31,6 @@ public class Real {
         return v.doubleValue();
     }
 
-    public void assertIsClose(Real that) {
-        if(this.v.subtract(that.v).abs().compareTo(new BigDecimal("0.0000000001")) >= 0)
-            throw new AssertionError(this + " isn't close to " + that);
-    }
-
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;

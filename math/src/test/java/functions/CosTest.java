@@ -4,6 +4,8 @@ import abstractalgebra.reals.Real;
 import abstractalgebra.reals.Reals;
 import org.junit.Test;
 
+import static abstractalgebra.reals.RealMultiplication.multiply;
+import static functions.Asserts.assertClose;
 import static org.junit.Assert.*;
 
 public class CosTest {
@@ -20,12 +22,12 @@ public class CosTest {
     @Test
     public void examples() {
         SingleValuedFunction<Real, Real> f = f();
-        f.apply(new Real(0)).assertIsClose(Real.ONE);
-        f.apply(Real.PI).assertIsClose(new Real(-1));
-        f.apply(new Real(2 * Math.PI)).assertIsClose(Real.ONE);
+        assertClose(f.apply(Real.ZERO), Real.ONE);
+        assertClose(f.apply(Real.PI), Real.MINUS_ONE);
+        assertClose(f.apply(multiply(new Real(2), Real.PI)), Real.ONE);
 
-        f.apply(new Real(Math.PI / 2)).assertIsClose(Real.ZERO);
-        f.apply(new Real(Math.PI * 3 / 2)).assertIsClose(Real.ZERO);
+        assertClose(f.apply(new Real(Math.PI / 2)), Real.ZERO);
+        assertClose(f.apply(new Real(Math.PI * 3 / 2)),Real.ZERO);
     }
 
     private static SingleValuedFunction<Real, Real> f() {
