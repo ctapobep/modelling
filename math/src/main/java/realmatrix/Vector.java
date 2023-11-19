@@ -105,6 +105,13 @@ public class Vector {
         return true;
     }
     public String toString() {
-        return Arrays.toString(entries);
+        BigDecimal e = new BigDecimal("1e-6");
+        float[] rounded = new float[entries.length];
+        for (int i = 0; i < entries.length; i++)
+            rounded[i] = entries[i].abs().compareTo(e) <= 0 ? 0F : entries[i].floatValue();
+        StringBuilder sb = new StringBuilder();
+        for (float v : rounded)
+            sb.append(' ').append(v).append("\t");
+        return sb.toString();
     }
 }

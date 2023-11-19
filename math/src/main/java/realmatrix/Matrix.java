@@ -1,7 +1,6 @@
 package realmatrix;
 
 import java.math.BigDecimal;
-import java.math.MathContext;
 import java.util.Arrays;
 
 public class Matrix {
@@ -39,6 +38,16 @@ public class Matrix {
         for (int i = 0; i < dims; i++)
             result[i][i] = 1;
         return Matrix.fromColumns(result);
+    }
+
+    /**
+     * For multiplication that looks like on paper (right to left). So that we don't have to nest multiplication calls.
+     */
+    public static Matrix times(Matrix ... matrices) {
+        Matrix result = Matrix.identity(matrices[0].height);
+        for (int i = matrices.length-1; i >= 0; i--)
+            result = matrices[i].times(result);
+        return result;
     }
     public Matrix times(double scalar) {
         Vector[] newColumns = new Vector[columns.length];
@@ -113,11 +122,8 @@ public class Matrix {
 
     public String toString() {
         StringBuilder result = new StringBuilder("Matrix ").append(height).append('x').append(width).append(":\n");
-        for(int i = 0; i < height; i++) {
-            for (Vector v : columns)
-                result.append(' ').append(String.format("%5s", v.get(i))).append("\t");
-            result.append('\n');
-        }
+        for(int i = 0; i < height; i++)
+            result.append(getRow(i)).append('\n');
         return result.toString();
     }
 
