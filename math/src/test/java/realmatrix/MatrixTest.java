@@ -14,7 +14,7 @@ public class MatrixTest {
         assertEquals(new Vector(-4, 3, -2), matrix.getColumn(1));
     }
     @Test public void transposingTurnsRowsIntoColumns() {
-        Matrix matrix = Matrix.fromColumns(new double[][]{{1, 0, 3}, {-2, 1.5F, -1}}).transpose();
+        Matrix matrix = Matrix.fromColumns(new double[][]{{1, 0, 3}, {-2, 1.5F, -1}}).t();
         assertEquals(new Vector(1, 0, 3), matrix.getRow(0));
         assertEquals(new Vector(-2, 1.5F, -1), matrix.getRow(1));
     }
@@ -32,7 +32,7 @@ public class MatrixTest {
     @Test public void matrixCreatedFromColumnsIsTransposeOfTheOneCreatedFromRows() {
         Random r = new Random();
         double[][] data = {{r.nextDouble(), r.nextDouble()}, {r.nextDouble(), r.nextDouble()}, {r.nextDouble(), r.nextDouble()}};
-        assertEquals(Matrix.fromColumns(data).transpose(), Matrix.fromRows(data));
+        assertEquals(Matrix.fromColumns(data).t(), Matrix.fromRows(data));
     }
     @Test public void multiplyingByInverseYieldsIdentity() {
         Matrix identity = Matrix.identity(2);

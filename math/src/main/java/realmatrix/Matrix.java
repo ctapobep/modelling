@@ -26,10 +26,10 @@ public class Matrix {
         return new Matrix(columns);
     }
     public static Matrix fromRows(Vector... rows) {
-        return new Matrix(rows).transpose();
+        return new Matrix(rows).t();
     }
     public static Matrix fromRows(double[][] entries) {
-        return new Matrix(entries).transpose();
+        return new Matrix(entries).t();
     }
     public static Matrix identity(int dims) {
         double[][] result = new double[dims][dims];
@@ -73,7 +73,9 @@ public class Matrix {
             result[col] = times(rightMatrix.getColumn(col));
         return Matrix.fromColumns(result);
     }
-    public Matrix transpose() {
+
+    /** transpose */
+    public Matrix t() {
         Vector[] rows = getRows();
         return Matrix.fromColumns(rows);
     }
