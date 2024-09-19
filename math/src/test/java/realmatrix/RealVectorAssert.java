@@ -24,7 +24,7 @@ public class RealVectorAssert {
         assertEquals(msg + "Dimensions are different!", expected.dims(), actual.dims());
         for (int i = 0; i < expected.dims(); i++)
             assertTrue(
-                    msg + "Values differ in " + i + " component:\n Expected: " + expected + "\n Actual: " + actual,
+                    msg + "Values differ in " + i + " component:\n Expected: " + expected + "\n Actual:   " + actual,
                     expected.get(i)
                             .subtract(actual.get(i))
                             .abs()

@@ -53,6 +53,11 @@ public class Vector {
             result = result.add(get(i).multiply(that.get(i)));
         return result;
     }
+    public Vector projectOn(Vector that) {
+        return that.times(
+                this.dot(that).divide(that.dot(that), MathContext.DECIMAL128)
+        );
+    }
     public BigDecimal norm() {
         return this.dot(this).sqrt(MathContext.DECIMAL128);
     }
