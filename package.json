@@ -1,0 +1,17 @@
+{
+  "name": "modelling",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "scripts": {
+    "test": "mocha './math/src/test/js/**/*Test.js'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ctapobep/modelling.git"
+  },
+  "devDependencies": {
+    "mocha": "10.4.0"
+  },
+  "private": true
+}
