@@ -64,4 +64,14 @@ public class NumberUtilsTest {
         assertEquals(1, gcd(4, 11));
         assertEquals(2, gcd(6, 20));
     }
+
+    @Test
+    public void lcmTest() {
+        assertEquals(1, lcm(1, 1));
+        assertEquals(2, lcm(1, 2));
+        assertEquals(2, lcm(2, 2));
+        assertEquals(8, lcm(4, 8));
+        assertEquals(44, lcm(4, 11));
+        assertEquals(60, lcm(6, 20));
+    }
 }

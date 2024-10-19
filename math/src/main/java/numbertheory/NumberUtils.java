@@ -7,6 +7,9 @@ import java.util.Map;
 
 public class NumberUtils {
 
+    /**
+     * Aka prime factorization or prime decomposition
+     */
     public static Map<Integer, Integer> factor(int n) {
         assertNatural(n);
         int v = n;
@@ -17,7 +20,7 @@ public class NumberUtils {
                 int power = divisors.getOrDefault(i, 0) + 1;
                 divisors.put(i, power);
                 if(v == 1)
-                    return divisors;
+                    return Map.copyOf(divisors);
                 if(v == 0)
                     break;
             }
@@ -48,6 +51,9 @@ public class NumberUtils {
         return true;
     }
 
+    /**
+     * Greatest Common Divisor
+     */
     public static int gcd(int a, int b) {
         assertNatural(a);
         assertNatural(b);
@@ -61,6 +67,13 @@ public class NumberUtils {
             i = j;
             j = remainder;
         }
+    }
+
+    /**
+     * Least Common Multiple
+     */
+    public static int lcm(int a, int b) {
+        return a * b / gcd(a, b);
     }
 
     public static boolean isDivisible(int n, int divisor) {
