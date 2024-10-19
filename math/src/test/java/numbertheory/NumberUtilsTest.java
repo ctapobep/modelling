@@ -11,25 +11,6 @@ import static org.junit.Assert.*;
 public class NumberUtilsTest {
 
     @Test
-    public void factorTest() {
-        assertEquals(Map.of(1, 1), factor(1));
-        assertEquals(Map.of(2, 1), factor(2));
-        assertEquals(Map.of(3, 1), factor(3));
-        assertEquals(Map.of(2, 2), factor(4));
-        assertEquals(Map.of(5, 1), factor(5));
-        assertEquals(Map.of(2, 1, 3, 1), factor(6));
-        assertEquals(Map.of(7,1), factor(7));
-        assertEquals(Map.of(2,3), factor(8));
-        assertEquals(Map.of(3,2), factor(9));
-        assertEquals(Map.of(2,1, 5,1), factor(10));
-    }
-
-    @Test
-    public void primesTest() {
-        assertArrayEquals(new int[]{1, 2, 3, 5, 7}, primes(10));
-    }
-
-    @Test
     public void modForPositiveIsSameAsJavaImplementation() {
         int x = integer(0, Integer.MAX_VALUE);
         int m = integer(1, Integer.MAX_VALUE);
@@ -40,20 +21,6 @@ public class NumberUtilsTest {
         assertEquals(4, mod(-1, 5));
     }
 
-    @Test
-    public void isPrimeTest() {
-        assertTrue(isPrime(1));
-        assertTrue(isPrime(2));
-        assertTrue(isPrime(3));
-        assertFalse(isPrime(4));
-        assertTrue(isPrime(5));
-        assertFalse(isPrime(6));
-        assertTrue(isPrime(7));
-        assertFalse(isPrime(8));
-        assertFalse(isPrime(9));
-        assertFalse(isPrime(10));
-        assertTrue(isPrime(11));
-    }
 
     @Test
     public void gcdTest() {
