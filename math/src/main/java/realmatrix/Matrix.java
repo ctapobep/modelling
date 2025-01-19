@@ -79,6 +79,17 @@ public class Matrix {
         Vector[] rows = getRows();
         return Matrix.fromColumns(rows);
     }
+    public Matrix grammScmidt() {
+        Vector[] result = new Vector[width];
+        result[0] = getColumn(0);
+        for (int c = 1; c < width; c++) {
+            Vector curr = getColumn(c);
+            for (int j = 0; j < c; j++)
+                curr = curr.projectOn(getColumn(j));
+            result[c] = curr;
+        }
+        return fromColumns(result);
+    }
     public Vector getRow(int rowIdx) {
         BigDecimal [] row = new BigDecimal[width];
         for(int i = 0; i < width; i++)
@@ -108,10 +119,21 @@ public class Matrix {
         return new GaussianElimination(getRows()).rref();
     }
 
+    public String dims() {
+        return height + "x" + width;
+    }
+    public int height() {return height;}
+    public int width() {return width;}
+
     private Vector[] getRows() {
-        Vector[] rows = new Vector[this.height];
+        Vector[] rows = new Vector[height];
         for (int r = 0; r < height; r++)
             rows[r] = getRow(r);
+        return rows;
+    }
+    private Vector[] getCols() {
+        Vector[] rows = new Vector[width];
+        System.arraycopy(this.columns, 0, rows, 0, width);
         return rows;
     }
 
@@ -123,6 +145,13 @@ public class Matrix {
     }
 
     public String toString() {
+        int[] maxSymbolsInCol = new int[width];
+        for (int c = 0; c < width; c++) {
+            for (int r = 0; r < height; r++) {
+                int currLen = (get(c, r) + "").length();
+                maxSymbolsInCol[c] = Math.max(currLen, maxSymbolsInCol[c]);
+            }
+        }
         StringBuilder result = new StringBuilder("Matrix ").append(height).append('x').append(width).append(":\n");
         for(int i = 0; i < height; i++)
             result.append(getRow(i)).append('\n');

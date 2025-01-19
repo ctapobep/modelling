@@ -8,6 +8,7 @@ import java.util.Arrays;
 
 import static io.qala.datagen.RandomShortApi.integer;
 import static io.qala.datagen.RandomShortApi.sample;
+import static java.lang.Math.round;
 
 public class Vector {
     private final BigDecimal[] entries;
@@ -113,10 +114,12 @@ public class Vector {
         BigDecimal e = new BigDecimal("1e-6");
         float[] rounded = new float[entries.length];
         for (int i = 0; i < entries.length; i++)
-            rounded[i] = entries[i].abs().compareTo(e) <= 0 ? 0F : entries[i].floatValue();
+            // round to 2 decimals, if it's close to 0 - just output 0
+            rounded[i] = entries[i].abs().compareTo(e) <= 0 ? 0F : round(entries[i].floatValue()* 100)/100F;
         StringBuilder sb = new StringBuilder();
         for (float v : rounded)
-            sb.append(' ').append(v).append("\t");
+            // if it's non-negative, add extra space. because negatives have `-` which makes them not aligned nicely
+            sb.append(' ').append(v < 0 ? v : ' ' + v).append("\t");
         return sb.toString();
     }
 }
