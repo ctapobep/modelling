@@ -119,7 +119,7 @@ public class Vector {
         StringBuilder sb = new StringBuilder();
         for (float v : rounded)
             // if it's non-negative, add extra space. because negatives have `-` which makes them not aligned nicely
-            sb.append(' ').append(v < 0 ? v : ' ' + v).append("\t");
+            sb.append(' ').append(v < 0 ? v : " " + v).append("\t");
         return sb.toString();
     }
 }
