@@ -1,7 +1,9 @@
 package realmatrix;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Matrix {
     private final Vector[] columns;
@@ -30,6 +32,12 @@ public class Matrix {
     }
     public static Matrix fromRows(double[][] entries) {
         return new Matrix(entries).t();
+    }
+    public static Matrix stackHorizontally(Matrix ... matrices) {
+        List<Vector> cols = new ArrayList<>();
+        for (Matrix m : matrices)
+            cols.addAll(List.of(m.getCols()));
+        return fromColumns(cols.toArray(new Vector[0]));
     }
     public static Matrix identity(int dims) {
         double[][] result = new double[dims][dims];
@@ -107,6 +115,12 @@ public class Matrix {
         Vector[] rows = getRows();
         rows[rowToChange] = rows[rowToChange].add(rows[rowToAdd].times(coeffToMultiply2ndRow));
         return fromRows(rows);
+    }
+    public Matrix getColumns(int fromInclusive, int toColExclusive) {
+        Vector[] cols = new Vector[toColExclusive - fromInclusive];
+        for (int i = fromInclusive; i < toColExclusive; i++)
+            cols[i-fromInclusive] = getColumn(i);
+        return fromColumns(cols);
     }
     public Vector getColumn(int colIdx) {
         return columns[colIdx];
